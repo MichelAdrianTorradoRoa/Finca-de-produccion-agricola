@@ -620,6 +620,86 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
+--
+-- Table structure for table `log_empleados`
+--
+
+DROP TABLE IF EXISTS `log_empleados`;
+CREATE TABLE `log_empleados` (
+  `idLog_Empleados` int NOT NULL AUTO_INCREMENT,
+  `Mensaje` varchar(45) NOT NULL,
+  `Fecha` date NOT NULL,
+  `idEmpleado` int NOT NULL,
+  PRIMARY KEY (`idLog_Empleados`,`idEmpleado`),
+  UNIQUE KEY `idLog_Empleados_UNIQUE` (`idLog_Empleados`),
+  KEY `fk_Log_Empleados_Empleados1_idx` (`idEmpleado`),
+  CONSTRAINT `fk_Log_Empleados_Empleados1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleados` (`idEmpleado`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Table structure for table `log_maquinaria`
+--
+
+DROP TABLE IF EXISTS `log_maquinaria`;
+CREATE TABLE `log_maquinaria` (
+  `idLog_Maquinaria` int NOT NULL AUTO_INCREMENT,
+  `Mensaje` varchar(45) NOT NULL,
+  `Fecha` date NOT NULL,
+  `idMaquinaria` int NOT NULL,
+  PRIMARY KEY (`idLog_Maquinaria`,`idMaquinaria`),
+  UNIQUE KEY `idLog_Maquinaria_UNIQUE` (`idLog_Maquinaria`),
+  KEY `fk_Log_Maquinaria_Maquinaria1_idx` (`idMaquinaria`),
+  CONSTRAINT `fk_Log_Maquinaria_Maquinaria1` FOREIGN KEY (`idMaquinaria`) REFERENCES `maquinaria` (`idMaquinaria`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Table structure for table `log_productos`
+--
+
+DROP TABLE IF EXISTS `log_productos`;
+CREATE TABLE `log_productos` (
+  `idLog_Productos` int NOT NULL AUTO_INCREMENT,
+  `Mensaje` varchar(45) NOT NULL,
+  `Fecha` date NOT NULL,
+  `idProducto` int NOT NULL,
+  PRIMARY KEY (`idLog_Productos`,`idProducto`),
+  KEY `fk_Log_Productos_Productos1_idx` (`idProducto`),
+  CONSTRAINT `fk_Log_Productos_Productos1` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProducto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Table structure for table `log_proveedores`
+--
+
+DROP TABLE IF EXISTS `log_proveedores`;
+CREATE TABLE `log_proveedores` (
+  `idLog_Proveedores` int NOT NULL AUTO_INCREMENT,
+  `Mensaje` varchar(45) NOT NULL,
+  `Fecha` date NOT NULL,
+  `idProveedor` int NOT NULL,
+  PRIMARY KEY (`idLog_Proveedores`,`idProveedor`),
+  UNIQUE KEY `idLog_Proveedores_UNIQUE` (`idLog_Proveedores`),
+  KEY `fk_Log_Proveedores_Proveedores1_idx` (`idProveedor`),
+  CONSTRAINT `fk_Log_Proveedores_Proveedores1` FOREIGN KEY (`idProveedor`) REFERENCES `proveedores` (`idProveedor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Table structure for table `log_ventas`
+--
+
+DROP TABLE IF EXISTS `log_ventas`;
+CREATE TABLE `log_ventas` (
+  `idLog_Ventas` int NOT NULL AUTO_INCREMENT,
+  `Mensaje` varchar(45) NOT NULL,
+  `Fecha` date NOT NULL,
+  `idVenta` int NOT NULL,
+  PRIMARY KEY (`idLog_Ventas`,`idVenta`),
+  UNIQUE KEY `idLog_Ventas_UNIQUE` (`idLog_Ventas`),
+  KEY `fk_Log_Ventas_Ventas1_idx` (`idVenta`),
+  CONSTRAINT `fk_Log_Ventas_Ventas1` FOREIGN KEY (`idVenta`) REFERENCES `ventas` (`idVenta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
