@@ -1,3 +1,4 @@
+USE finca;
 INSERT INTO finca.terreno_agricola (Hectareas, Tipo, Estado) VALUES (10, 'Cultivo de maíz', 'Disponible');
 INSERT INTO finca.terreno_agricola (Hectareas, Tipo, Estado) VALUES (15, 'Cultivo de café', 'Ocupado');
 INSERT INTO finca.terreno_agricola (Hectareas, Tipo, Estado) VALUES (20, 'Cultivo de frijoles', 'Disponible');
@@ -96,8 +97,8 @@ INSERT INTO finca.agricola (Tipo, Cantidad, Fecha_Siembra, Fecha_Cosecha, Estado
 INSERT INTO finca.agricola (Tipo, Cantidad, Fecha_Siembra, Fecha_Cosecha, Estado, idTerreno_Agricola) VALUES ('Berenjena blanca', 50, '2024-03-15', '2024-08-15', 'Por cosechar', 46); -- 46
 INSERT INTO finca.agricola (Tipo, Cantidad, Fecha_Siembra, Fecha_Cosecha, Estado, idTerreno_Agricola) VALUES ('Rábano', 90, '2024-01-30', '2024-06-30', 'Cosechado', 47); -- 47
 INSERT INTO finca.agricola (Tipo, Cantidad, Fecha_Siembra, Fecha_Cosecha, Estado, idTerreno_Agricola) VALUES ('Lima', 60, '2024-04-01', '2025-01-01', 'En crecimiento', 48); -- 48
-INSERT INTO finca.agricola (Tipo, Cantidad, Fecha_Siembra, Fecha_Cosecha, Estado, idTerreno_Agricola) VALUES ('Guayaba', 120, '2024-02-15', '2024-08-15', 'Cosechado', 49); -- 49
-INSERT INTO finca.agricola (Tipo, Cantidad, Fecha_Siembra, Fecha_Cosecha, Estado, idTerreno_Agricola) VALUES ('Naranja', 250, '2024-03-20', '2024-11-20', 'En crecimiento', 50); -- 50
+INSERT INTO finca.agricola (Tipo, Cantidad, Fecha_Siembra, Fecha_Cosecha, Estado, idTerreno_Agricola) VALUES ('Guayaba', 120, '2024-02-15', '2024-08-15', 'Cosechado', 48); -- 49
+INSERT INTO finca.agricola (Tipo, Cantidad, Fecha_Siembra, Fecha_Cosecha, Estado, idTerreno_Agricola) VALUES ('Naranja', 250, '2024-03-20', '2024-11-20', 'En crecimiento', 48); -- 50
 
 
 INSERT INTO finca.cargo (Nombre, Requisitos, Nivel) VALUES ('Gerente de Finca', 'Título universitario en agronomía', 'Alta'); -- 1
@@ -348,53 +349,53 @@ INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion)
 INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Cristian Salazar', 'Activo', 'Premium', '1990-09-29', 41);
 INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Carmen Ramírez', 'Inactivo', 'Regular', '1996-12-31', 42);
 INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Diego Soto', 'Activo', 'VIP', '1992-04-11', 43);
-INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Andrea Herrera', 'Activo', 'Premium', '1986-05-06', 44);
-INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Tomás León', 'Inactivo', 'Regular', '1983-11-16', 45);
-INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Gabriela Ruiz', 'Activo', 'VIP', '1997-01-27', 46);
-INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Luis Ortiz', 'Activo', 'Premium', '1984-08-23', 47);
-INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Adriana Martínez', 'Inactivo', 'Regular', '1990-10-30', 48);
-INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Jorge Fernández', 'Activo', 'VIP', '1995-07-15', 49);
-INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Beatriz Paredes', 'Activo', 'Premium', '1988-09-09', 50);
+INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Andrea Herrera', 'Activo', 'Premium', '1986-05-06', 43);
+INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Tomás León', 'Inactivo', 'Regular', '1983-11-16', 42);
+INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Gabriela Ruiz', 'Activo', 'VIP', '1997-01-27', 41);
+INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Luis Ortiz', 'Activo', 'Premium', '1984-08-23', 40);
+INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Adriana Martínez', 'Inactivo', 'Regular', '1990-10-30', 38);
+INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Jorge Fernández', 'Activo', 'VIP', '1995-07-15', 39);
+INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Beatriz Paredes', 'Activo', 'Premium', '1988-09-09', 30);
 
 INSERT INTO finca.empleados (Nombre, Apellido, Salario, Fecha_Contratacion, Fecha_Nacimiento, Hora_inicio, Hora_Finalizacion, Teleono, Estado, idCargo) VALUES 
-('Juan', 'Pérez', 2000000.00, '2023-01-15', '1990-05-20', '08:00:00', '17:00:00', 3001234567, 'Activo', 1),
-('María', 'García', 1800000.00, '2022-02-10', '1985-10-30', '09:00:00', '18:00:00', 3009876543, 'Activo', 2),
-('Carlos', 'López', 1500000.00, '2021-03-05', '1992-08-15', '07:30:00', '16:30:00', 3003456789, 'Inactivo', 3),
-('Ana', 'Martínez', 1400000.00, '2020-04-01', '1995-12-25', '08:00:00', '17:00:00', 3006543210, 'Activo', 4),
-('Luis', 'Hernández', 1300000.00, '2019-05-20', '1988-01-10', '07:00:00', '16:00:00', 3004567890, 'Retirado', 5),
-('Claudia', 'Rodríguez', 1200000.00, '2018-06-30', '1993-04-05', '08:30:00', '17:30:00', 3002345678, 'Activo', 6),
-('Pedro', 'Sánchez', 2500000.00, '2023-01-10', '1982-07-18', '09:00:00', '18:00:00', 3008765432, 'Activo', 7),
-('Laura', 'Ramírez', 1700000.00, '2020-07-15', '1987-03-12', '08:00:00', '17:00:00', 3003456789, 'Inactivo', 8),
-('Fernando', 'Torres', 1900000.00, '2021-08-25', '1989-09-05', '07:30:00', '16:30:00', 3002345670, 'Activo', 9),
-('Sofía', 'Vásquez', 2200000.00, '2022-09-01', '1990-11-25', '08:00:00', '17:00:00', 3005678901, 'Activo', 10),
-('Ricardo', 'Martín', 2100000.00, '2019-10-10', '1991-02-20', '08:00:00', '17:00:00', 3006789012, 'Inactivo', 11),
-('Marta', 'Cruz', 1600000.00, '2021-11-15', '1994-01-30', '09:00:00', '18:00:00', 3007890123, 'Activo', 12),
-('Javier', 'Reyes', 1400000.00, '2020-12-20', '1986-05-05', '07:00:00', '16:00:00', 3008901234, 'Retirado', 13),
-('Patricia', 'Mendoza', 1550000.00, '2018-01-25', '1992-07-15', '08:30:00', '17:30:00', 3009012345, 'Inactivo', 14),
-('Diego', 'Rojas', 1350000.00, '2019-02-10', '1993-06-20', '08:00:00', '17:00:00', 3000123456, 'Activo', 15),
-('Gabriela', 'Núñez', 1250000.00, '2017-03-15', '1988-04-10', '09:00:00', '18:00:00', 3001234567, 'Activo', 16),
-('Andrés', 'Salazar', 2400000.00, '2023-01-05', '1980-08-30', '08:00:00', '17:00:00', 3002345678, 'Inactivo', 17),
-('Luisa', 'Gómez', 2000000.00, '2021-04-20', '1985-11-12', '07:30:00', '16:30:00', 3003456789, 'Retirado', 18),
-('David', 'Pinto', 1850000.00, '2019-05-30', '1992-09-22', '08:00:00', '17:00:00', 3004567890, 'Activo', 19),
-('Elena', 'Ceballos', 1750000.00, '2020-06-25', '1994-01-15', '09:00:00', '18:00:00', 3005678901, 'Activo', 20),
-('Gustavo', 'Cano', 2500000.00, '2023-01-10', '1984-12-05', '08:30:00', '17:30:00', 3006789012, 'Activo', 21),
-('Rosa', 'Valdés', 1450000.00, '2018-07-15', '1990-03-18', '08:00:00', '17:00:00', 3007890123, 'Inactivo', 22),
-('Mónica', 'López', 1300000.00, '2016-08-01', '1987-05-20', '07:00:00', '16:00:00', 3008901234, 'Retirado', 23),
-('Hugo', 'Muñoz', 2200000.00, '2022-09-05', '1991-01-30', '08:00:00', '17:00:00', 3009012345, 'Activo', 24),
-('Silvia', 'Serrano', 2100000.00, '2019-10-25', '1989-11-10', '09:00:00', '18:00:00', 3000123456, 'Activo', 25),
-('Iván', 'Cruz', 1900000.00, '2020-11-15', '1992-07-05', '08:00:00', '17:00:00', 3001234567, 'Inactivo', 26),
-('Carmen', 'Pérez', 1650000.00, '2021-12-20', '1988-03-12', '08:30:00', '17:30:00', 3002345678, 'Activo', 27),
-('Esteban', 'Hernández', 1550000.00, '2018-01-30', '1990-02-28', '07:00:00', '16:00:00', 3003456789, 'Retirado', 28),
-('Verónica', 'Rivas', 1800000.00, '2022-02-15', '1995-09-10', '09:00:00', '18:00:00', 3004567890, 'Activo', 29),
-('Rodrigo', 'Salas', 2400000.00, '2023-03-10', '1983-12-18', '08:00:00', '17:00:00', 3005678901, 'Inactivo', 30),
-('Nadia', 'Ramírez', 2100000.00, '2020-04-25', '1994-08-12', '07:30:00', '16:30:00', 3006789012, 'Activo', 31),
-('Adriana', 'Castillo', 1500000.00, '2021-05-15', '1986-11-20', '08:00:00', '17:00:00', 3007890123, 'Retirado', 32),
-('Nicolás', 'García', 1600000.00, '2019-06-30', '1993-03-14', '09:00:00', '18:00:00', 3008901234, 'Activo', 33),
-('Samanta', 'Martínez', 1700000.00, '2020-07-05', '1991-04-11', '08:30:00', '17:30:00', 3009012345, 'Activo', 34),
-('Leonardo', 'Vélez', 1400000.00, '2022-08-20', '1987-09-29', '08:00:00', '17:00:00', 3000123456, 'Retirado', 35),
-('Sara', 'Moreno', 1950000.00, '2021-09-15', '1995-05-05', '07:00:00', '16:00:00', 3001234567, 'Inactivo', 36),
-('Antonio', 'Díaz', 2500000.00, '2023-10-10', '1983-10-20', '08:00:00', '17:00:00', 3002345678, 'Activo', 37),
-('Natalia', 'Alvarez', 1300000.00, '2019-11-01', '1989-12-01', '08:30:00', '17:30:00', 3003456789, 'Retirado', 38);
+('Juan', 'Pérez', 2000000.00, '2023-01-15', '1990-05-20', '08:00:00', '17:00:00', 30012345, 'Activo', 1),
+('María', 'García', 1800000.00, '2022-02-10', '1985-10-30', '09:00:00', '18:00:00', 30098765, 'Activo', 2),
+('Carlos', 'López', 1500000.00, '2021-03-05', '1992-08-15', '07:30:00', '16:30:00', 30034567, 'Inactivo', 3),
+('Ana', 'Martínez', 1400000.00, '2020-04-01', '1995-12-25', '08:00:00', '17:00:00', 30065432, 'Activo', 4),
+('Luis', 'Hernández', 1300000.00, '2019-05-20', '1988-01-10', '07:00:00', '16:00:00', 30045678, 'Retirado', 5),
+('Claudia', 'Rodríguez', 1200000.00, '2018-06-30', '1993-04-05', '08:30:00', '17:30:00', 30023456, 'Activo', 6),
+('Pedro', 'Sánchez', 2500000.00, '2023-01-10', '1982-07-18', '09:00:00', '18:00:00', 30087654, 'Activo', 7),
+('Laura', 'Ramírez', 1700000.00, '2020-07-15', '1987-03-12', '08:00:00', '17:00:00', 30034567, 'Inactivo', 8),
+('Fernando', 'Torres', 1900000.00, '2021-08-25', '1989-09-05', '07:30:00', '16:30:00', 30023456, 'Activo', 9),
+('Sofía', 'Vásquez', 2200000.00, '2022-09-01', '1990-11-25', '08:00:00', '17:00:00', 30056789, 'Activo', 10),
+('Ricardo', 'Martín', 2100000.00, '2019-10-10', '1991-02-20', '08:00:00', '17:00:00', 30067890, 'Inactivo', 11),
+('Marta', 'Cruz', 1600000.00, '2021-11-15', '1994-01-30', '09:00:00', '18:00:00', 30078901, 'Activo', 12),
+('Javier', 'Reyes', 1400000.00, '2020-12-20', '1986-05-05', '07:00:00', '16:00:00', 30089012, 'Retirado', 13),
+('Patricia', 'Mendoza', 1550000.00, '2018-01-25', '1992-07-15', '08:30:00', '17:30:00', 30090123, 'Inactivo', 14),
+('Diego', 'Rojas', 1350000.00, '2019-02-10', '1993-06-20', '08:00:00', '17:00:00', 30001234, 'Activo', 15),
+('Gabriela', 'Núñez', 1250000.00, '2017-03-15', '1988-04-10', '09:00:00', '18:00:00', 30012345, 'Activo', 16),
+('Andrés', 'Salazar', 2400000.00, '2023-01-05', '1980-08-30', '08:00:00', '17:00:00', 30023456, 'Inactivo', 17),
+('Luisa', 'Gómez', 2000000.00, '2021-04-20', '1985-11-12', '07:30:00', '16:30:00', 30034567, 'Retirado', 18),
+('David', 'Pinto', 1850000.00, '2019-05-30', '1992-09-22', '08:00:00', '17:00:00', 30045678, 'Activo', 19),
+('Elena', 'Ceballos', 1750000.00, '2020-06-25', '1994-01-15', '09:00:00', '18:00:00', 30056789, 'Activo', 20),
+('Gustavo', 'Cano', 2500000.00, '2023-01-10', '1984-12-05', '08:30:00', '17:30:00', 30067890, 'Activo', 21),
+('Rosa', 'Valdés', 1450000.00, '2018-07-15', '1990-03-18', '08:00:00', '17:00:00', 30078901, 'Inactivo', 22),
+('Mónica', 'López', 1300000.00, '2016-08-01', '1987-05-20', '07:00:00', '16:00:00', 30089012, 'Retirado', 23),
+('Hugo', 'Muñoz', 2200000.00, '2022-09-05', '1991-01-30', '08:00:00', '17:00:00', 30090123, 'Activo', 24),
+('Silvia', 'Serrano', 2100000.00, '2019-10-25', '1989-11-10', '09:00:00', '18:00:00', 30001234, 'Activo', 25),
+('Iván', 'Cruz', 1900000.00, '2020-11-15', '1992-07-05', '08:00:00', '17:00:00', 30012345, 'Inactivo', 26),
+('Carmen', 'Pérez', 1650000.00, '2021-12-20', '1988-03-12', '08:30:00', '17:30:00', 30023456, 'Activo', 27),
+('Esteban', 'Hernández', 1550000.00, '2018-01-30', '1990-02-28', '07:00:00', '16:00:00', 30034567, 'Retirado', 28),
+('Verónica', 'Rivas', 1800000.00, '2022-02-15', '1995-09-10', '09:00:00', '18:00:00', 30045678, 'Activo', 29),
+('Rodrigo', 'Salas', 2400000.00, '2023-03-10', '1983-12-18', '08:00:00', '17:00:00', 30056789, 'Inactivo', 30),
+('Nadia', 'Ramírez', 2100000.00, '2020-04-25', '1994-08-12', '07:30:00', '16:30:00', 30067890, 'Activo', 31),
+('Adriana', 'Castillo', 1500000.00, '2021-05-15', '1986-11-20', '08:00:00', '17:00:00', 30078901, 'Retirado', 32),
+('Nicolás', 'García', 1600000.00, '2019-06-30', '1993-03-14', '09:00:00', '18:00:00', 30089012, 'Activo', 33),
+('Samanta', 'Martínez', 1700000.00, '2020-07-05', '1991-04-11', '08:30:00', '17:30:00', 30090123, 'Activo', 34),
+('Leonardo', 'Vélez', 1400000.00, '2022-08-20', '1987-09-29', '08:00:00', '17:00:00', 30001234, 'Retirado', 35),
+('Sara', 'Moreno', 1950000.00, '2021-09-15', '1995-05-05', '07:00:00', '16:00:00', 30012345, 'Inactivo', 36),
+('Antonio', 'Díaz', 2500000.00, '2023-10-10', '1983-10-20', '08:00:00', '17:00:00', 30023456, 'Activo', 37),
+('Natalia', 'Alvarez', 1300000.00, '2019-11-01', '1989-12-01', '08:30:00', '17:30:00', 30034567, 'Retirado', 38);
 
 
 INSERT INTO finca.tareas (Nombre, Fecha_Inicio, Fecha_Final, Prioridad, Tipo) VALUES 
@@ -695,7 +696,7 @@ INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-08-20', 46);
 INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-08-25', 47);
 INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-09-01', 48);
 INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-09-05', 49);
-INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-09-10', 50);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-09-10', 48);
 
 INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (10, 'Nuevo', '2024-01-01', 1);
 INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (8, 'Usado', '2024-01-05', 2);
@@ -746,7 +747,7 @@ INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramient
 INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (13, 'Nuevo', '2024-08-20', 47);
 INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (15, 'Reparado', '2024-08-25', 48);
 INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (12, 'Dañado', '2024-09-01', 49);
-INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (18, 'Nuevo', '2024-09-05', 50);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (18, 'Nuevo', '2024-09-05', 47);
 
 INSERT INTO `finca`.`inventario_maquinaria` (Cantidad, Estado, Fecha, idMaquinaria) VALUES 
 (10, 'Operativo', '2024-01-15', 1),
@@ -898,7 +899,7 @@ INSERT INTO `finca`.`pecuario` (Tipo, Cantidad, Estado_Salud, idTerreno_Pecuario
 ('Cabras', 39, 'Saludable', 47),
 ('Gallinas', 225, 'Enfermo', 48),
 ('Ganado vacuno', 70, 'Saludable', 49),
-('Ovejas', 125, 'Enfermo', 50);
+('Ovejas', 125, 'Enfermo', 49);
 
 INSERT INTO `finca`.`produccion` (Fecha, Cantidad, idAgricola, idPecuario) VALUES
 ('2024-01-15', 100, 1, 1),
@@ -1106,8 +1107,8 @@ INSERT INTO `finca`.`inventario_productos` (Cantidad, Estado, Fecha, idProducto,
 (110, 'Disponible', '2024-11-29', 46, 46),
 (130, 'Agotado', '2024-11-30', 47, 47),
 (140, 'Disponible', '2024-12-01', 48, 48),
-(90, 'Disponible', '2024-12-02', 49, 49),
-(160, 'Disponible', '2024-12-03', 50, 50);
+(90, 'Disponible', '2024-12-02', 44, 44),
+(160, 'Disponible', '2024-12-03', 47, 47);
 
 INSERT INTO `finca`.`mantenimiento_maquinaria` (Fecha, idTipo_Maquinaria, idMaquinaria) VALUES
 ('2024-10-01', 1, 1),
@@ -1155,11 +1156,11 @@ INSERT INTO `finca`.`mantenimiento_maquinaria` (Fecha, idTipo_Maquinaria, idMaqu
 ('2024-11-12', 3, 43),
 ('2024-11-13', 4, 44),
 ('2024-11-14', 5, 45),
-('2024-11-15', 1, 46),
-('2024-11-16', 2, 47),
-('2024-11-17', 3, 48),
-('2024-11-18', 4, 49),
-('2024-11-19', 5, 50);
+('2024-11-15', 1, 44),
+('2024-11-16', 2, 44),
+('2024-11-17', 3, 43),
+('2024-11-18', 4, 42),
+('2024-11-19', 5, 40);
 
 INSERT INTO `finca`.`manteniminto_herramientas` (Fecha, Tipo, idHerramienta) VALUES
 ('2024-10-01', 'Reparación', 1),
@@ -1211,59 +1212,59 @@ INSERT INTO `finca`.`manteniminto_herramientas` (Fecha, Tipo, idHerramienta) VAL
 ('2024-11-16', 'Reparación', 47),
 ('2024-11-17', 'Mantenimiento Preventivo', 48),
 ('2024-11-18', 'Reparación', 49),
-('2024-11-19', 'Mantenimiento Preventivo', 50);
+('2024-11-19', 'Mantenimiento Preventivo', 49);
 
 INSERT INTO `finca`.`proveedores` (Nombre, Fecha_uso_servcios, Telefono) VALUES
-('Proveedor A', '2024-01-01', 1234567890),
-('Proveedor B', '2024-01-05', 9876543210),
-('Proveedor C', '2024-01-10', 1122334455),
-('Proveedor D', '2024-01-15', 5566778899),
-('Proveedor E', '2024-01-20', 6677889900),
-('Proveedor F', '2024-01-25', 9988776655),
-('Proveedor G', '2024-01-30', 5544332211),
-('Proveedor H', '2024-02-01', 1231231234),
-('Proveedor I', '2024-02-05', 3213214321),
-('Proveedor J', '2024-02-10', 1112223334),
-('Proveedor K', '2024-02-15', 4445556667),
-('Proveedor L', '2024-02-20', 7778889990),
-('Proveedor M', '2024-02-25', 6667778889),
-('Proveedor N', '2024-03-01', 2223334445),
-('Proveedor O', '2024-03-05', 9998887776),
-('Proveedor P', '2024-03-10', 5556667778),
-('Proveedor Q', '2024-03-15', 8889990001),
-('Proveedor R', '2024-03-20', 3334445556),
-('Proveedor S', '2024-03-25', 4446668882),
-('Proveedor T', '2024-03-30', 9871236540),
-('Proveedor U', '2024-04-01', 7894561230),
-('Proveedor V', '2024-04-05', 3214569870),
-('Proveedor W', '2024-04-10', 1472583690),
-('Proveedor X', '2024-04-15', 9638527410),
-('Proveedor Y', '2024-04-20', 8529637412),
-('Proveedor Z', '2024-04-25', 7418529630),
-('Proveedor AA', '2024-05-01', 1234567899),
-('Proveedor AB', '2024-05-05', 9876543212),
-('Proveedor AC', '2024-05-10', 1122334466),
-('Proveedor AD', '2024-05-15', 5566778898),
-('Proveedor AE', '2024-05-20', 6677889901),
-('Proveedor AF', '2024-05-25', 9988776651),
-('Proveedor AG', '2024-06-01', 5544332212),
-('Proveedor AH', '2024-06-05', 1231231235),
-('Proveedor AI', '2024-06-10', 3213214322),
-('Proveedor AJ', '2024-06-15', 1112223335),
-('Proveedor AK', '2024-06-20', 4445556668),
-('Proveedor AL', '2024-06-25', 7778889991),
-('Proveedor AM', '2024-07-01', 6667778882),
-('Proveedor AN', '2024-07-05', 2223334446),
-('Proveedor AO', '2024-07-10', 9998887777),
-('Proveedor AP', '2024-07-15', 5556667779),
-('Proveedor AQ', '2024-07-20', 8889990002),
-('Proveedor AR', '2024-07-25', 3334445557),
-('Proveedor AS', '2024-08-01', 4446668883),
-('Proveedor AT', '2024-08-05', 9871236543),
-('Proveedor AU', '2024-08-10', 7894561233),
-('Proveedor AV', '2024-08-15', 3214569872),
-('Proveedor AW', '2024-08-20', 1472583693),
-('Proveedor AX', '2024-08-25', 9638527413);
+('Proveedor A', '2024-01-01', 12345678),
+('Proveedor B', '2024-01-05', 98765432),
+('Proveedor C', '2024-01-10', 11223344),
+('Proveedor D', '2024-01-15', 55667788),
+('Proveedor E', '2024-01-20', 66778899),
+('Proveedor F', '2024-01-25', 99887766),
+('Proveedor G', '2024-01-30', 55443322),
+('Proveedor H', '2024-02-01', 12312312),
+('Proveedor I', '2024-02-05', 32132143),
+('Proveedor J', '2024-02-10', 11122233),
+('Proveedor K', '2024-02-15', 44455566),
+('Proveedor L', '2024-02-20', 77788899),
+('Proveedor M', '2024-02-25', 66677788),
+('Proveedor N', '2024-03-01', 22233344),
+('Proveedor O', '2024-03-05', 99988877),
+('Proveedor P', '2024-03-10', 55566677),
+('Proveedor Q', '2024-03-15', 88899900),
+('Proveedor R', '2024-03-20', 33344455),
+('Proveedor S', '2024-03-25', 44466688),
+('Proveedor T', '2024-03-30', 98712365),
+('Proveedor U', '2024-04-01', 78945612),
+('Proveedor V', '2024-04-05', 32145698),
+('Proveedor W', '2024-04-10', 14725836),
+('Proveedor X', '2024-04-15', 96385274),
+('Proveedor Y', '2024-04-20', 85296374),
+('Proveedor Z', '2024-04-25', 74185296),
+('Proveedor AA', '2024-05-01', 12345679),
+('Proveedor AB', '2024-05-05', 98765432),
+('Proveedor AC', '2024-05-10', 11223346),
+('Proveedor AD', '2024-05-15', 55667788),
+('Proveedor AE', '2024-05-20', 66778891),
+('Proveedor AF', '2024-05-25', 99887761),
+('Proveedor AG', '2024-06-01', 55443322),
+('Proveedor AH', '2024-06-05', 12312315),
+('Proveedor AI', '2024-06-10', 32132142),
+('Proveedor AJ', '2024-06-15', 11122235),
+('Proveedor AK', '2024-06-20', 44455568),
+('Proveedor AL', '2024-06-25', 77788891),
+('Proveedor AM', '2024-07-01', 66677782),
+('Proveedor AN', '2024-07-05', 22233346),
+('Proveedor AO', '2024-07-10', 99988877),
+('Proveedor AP', '2024-07-15', 55566679),
+('Proveedor AQ', '2024-07-20', 88899902),
+('Proveedor AR', '2024-07-25', 33344457),
+('Proveedor AS', '2024-08-01', 44466683),
+('Proveedor AT', '2024-08-05', 98712363),
+('Proveedor AU', '2024-08-10', 78945613),
+('Proveedor AV', '2024-08-15', 32145692),
+('Proveedor AW', '2024-08-20', 14725833),
+('Proveedor AX', '2024-08-25', 96385273);
 
 INSERT INTO `finca`.`ordenes_compra` (Estado, Fecha, Total, idProducto, idMaquinaria, idProveedor, idHerramienta) VALUES
 ('Pendiente', '2024-01-01', 1500.00, 1, 1, 1, 1),
@@ -1311,11 +1312,11 @@ INSERT INTO `finca`.`ordenes_compra` (Estado, Fecha, Total, idProducto, idMaquin
 ('Completada', '2024-07-15', 1900.75, 43, 1, 1, 4),
 ('Pendiente', '2024-07-20', 1500.25, 44, 2, 2, 5),
 ('Completada', '2024-07-25', 900.00, 45, 3, 3, 1),
-('Pendiente', '2024-08-01', 700.50, 46, 4, 4, 2),
-('Completada', '2024-08-05', 2200.00, 47, 1, 5, 3),
-('Pendiente', '2024-08-10', 1600.00, 48, 2, 6, 4),
-('Completada', '2024-08-15', 800.25, 49, 3, 7, 5),
-('Pendiente', '2024-08-20', 2000.00, 50, 1, 1, 1);
+('Pendiente', '2024-08-01', 700.50, 41, 4, 4, 2),
+('Completada', '2024-08-05', 2200.00, 42, 1, 5, 3),
+('Pendiente', '2024-08-10', 1600.00, 43, 2, 6, 4),
+('Completada', '2024-08-15', 800.25, 44, 3, 7, 5),
+('Pendiente', '2024-08-20', 2000.00, 40, 1, 1, 1);
 
 INSERT INTO `finca`.`productos_maquinaria` (Cantidad, idProducto, idMaquinaria) VALUES
 (100, 1, 1),
@@ -1370,58 +1371,6 @@ INSERT INTO `finca`.`productos_maquinaria` (Cantidad, idProducto, idMaquinaria) 
 (60, 50, 2);
 
 INSERT INTO `finca`.`productos_ventas` (idProducto, idVenta) VALUES
-(1, 101),
-(2, 102),
-(3, 103),
-(4, 104),
-(5, 105),
-(6, 106),
-(7, 107),
-(8, 108),
-(9, 109),
-(10, 110),
-(11, 111),
-(12, 112),
-(13, 113),
-(14, 114),
-(15, 115),
-(16, 116),
-(17, 117),
-(18, 118),
-(19, 119),
-(20, 120),
-(21, 121),
-(22, 122),
-(23, 123),
-(24, 124),
-(25, 125),
-(26, 126),
-(27, 127),
-(28, 128),
-(29, 129),
-(30, 130),
-(31, 131),
-(32, 132),
-(33, 133),
-(34, 134),
-(35, 135),
-(36, 136),
-(37, 137),
-(38, 138),
-(39, 139),
-(40, 140),
-(41, 141),
-(42, 142),
-(43, 143),
-(44, 144),
-(45, 145),
-(46, 146),
-(47, 147),
-(48, 148),
-(49, 149),
-(50, 150);
-
-INSERT INTO `finca`.`tareas_herramientas` (idTarea, idHerramienta) VALUES
 (1, 1),
 (2, 2),
 (3, 3),
@@ -1471,4 +1420,56 @@ INSERT INTO `finca`.`tareas_herramientas` (idTarea, idHerramienta) VALUES
 (47, 47),
 (48, 48),
 (49, 49),
-(50, 50);
+(50, 10);
+
+INSERT INTO `finca`.`tareas_herramientas` (idTarea, idHerramienta) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10),
+(11, 11),
+(12, 12),
+(13, 13),
+(14, 14),
+(15, 15),
+(16, 16),
+(17, 17),
+(18, 18),
+(19, 19),
+(20, 20),
+(21, 21),
+(22, 22),
+(23, 23),
+(24, 24),
+(25, 25),
+(26, 26),
+(27, 27),
+(28, 28),
+(29, 29),
+(30, 30),
+(31, 31),
+(32, 32),
+(33, 33),
+(34, 34),
+(35, 35),
+(36, 36),
+(37, 37),
+(38, 38),
+(39, 39),
+(40, 40),
+(41, 41),
+(42, 42),
+(43, 43),
+(42, 44),
+(41, 45),
+(42, 46),
+(41, 47),
+(42, 48),
+(41, 49),
+(23, 20);
