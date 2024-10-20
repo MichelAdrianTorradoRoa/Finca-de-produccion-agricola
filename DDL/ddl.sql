@@ -14,6 +14,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema finca
 -- -----------------------------------------------------
+DROP DATABASE finca;
 CREATE SCHEMA IF NOT EXISTS `finca` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 USE `finca` ;
 
@@ -151,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `finca`.`empleados` (
   `Fecha_Nacimiento` DATE NOT NULL,
   `Hora_inicio` TIME NOT NULL,
   `Hora_Finalizacion` TIME NOT NULL,
-  `Teleono` INT NOT NULL,
+  `Telefono` INT NOT NULL,
   `Estado` VARCHAR(45) NOT NULL,
   `idCargo` INT NOT NULL,
   PRIMARY KEY (`idEmpleado`, `idCargo`),
@@ -207,7 +208,6 @@ CREATE TABLE IF NOT EXISTS `finca`.`maquinaria` (
   `idTarea` INT NOT NULL,
   PRIMARY KEY (`idMaquinaria`, `idTipo_Maquinaria`, `idTarea`),
   UNIQUE INDEX `idMaquinaria_UNIQUE` (`idMaquinaria` ASC) VISIBLE,
-  UNIQUE INDEX `Nombre_UNIQUE` (`Nombre` ASC) VISIBLE,
   INDEX `fk_Maquinaria_Tipo_Maquinaria1_idx` (`idTipo_Maquinaria` ASC) VISIBLE,
   INDEX `fk_Maquinaria_Tareas1_idx` (`idTarea` ASC) VISIBLE,
   CONSTRAINT `fk_Maquinaria_Tareas1`
@@ -219,6 +219,7 @@ CREATE TABLE IF NOT EXISTS `finca`.`maquinaria` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
 
 
 -- -----------------------------------------------------
@@ -491,17 +492,17 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `finca`.`manteniminto_herramientas`
+-- Table `finca`.`mantenimiento_herramientas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `finca`.`manteniminto_herramientas` (
-  `idManteniminto_Herramientas` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `finca`.`mantenimiento_herramientas` (
+  `idMantenimiento_Herramientas` INT NOT NULL AUTO_INCREMENT,
   `Fecha` DATE NOT NULL,
   `Tipo` VARCHAR(45) NOT NULL,
   `idHerramienta` INT NOT NULL,
-  PRIMARY KEY (`idManteniminto_Herramientas`, `idHerramienta`),
-  UNIQUE INDEX `idManteniminto_Herramientas_UNIQUE` (`idManteniminto_Herramientas` ASC) VISIBLE,
-  INDEX `fk_Manteniminto_Herramientas_Herramientas1_idx` (`idHerramienta` ASC) VISIBLE,
-  CONSTRAINT `fk_Manteniminto_Herramientas_Herramientas1`
+  PRIMARY KEY (`idMantenimiento_Herramientas`, `idHerramienta`),
+  UNIQUE INDEX `idMantenimiento_Herramientas_UNIQUE` (`idMantenimiento_Herramientas` ASC) VISIBLE,
+  INDEX `fk_Mantenimiento_Herramientas_Herramientas1_idx` (`idHerramienta` ASC) VISIBLE,
+  CONSTRAINT `fk_Mantenimiento_Herramientas_Herramientas1`
     FOREIGN KEY (`idHerramienta`)
     REFERENCES `finca`.`herramientas` (`idHerramienta`))
 ENGINE = InnoDB

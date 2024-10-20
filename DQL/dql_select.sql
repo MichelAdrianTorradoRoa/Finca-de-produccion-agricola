@@ -16,7 +16,7 @@ SELECT Nombre
 FROM herramientas
 WHERE idHerramienta IN (
     SELECT idHerramienta
-    FROM manteniminto_herramientas
+    FROM mantenimiento_herramientas
 );
 
 -- Obtener la cantidad de productos en el inventario
@@ -96,3 +96,65 @@ WHERE p.Precio > (
     SELECT AVG(Precio)
     FROM productos
 );
+
+
+USE finca;
+SELECT SUM(Total) AS Total_Ventas
+FROM ventas;
+
+USE finca;
+SELECT tp.Nombre AS Categoria, COUNT(pv.idProducto) AS Total_Vendidos
+FROM productos_ventas pv
+JOIN productos p ON pv.idProducto = p.idProducto
+JOIN tipo_productos tp ON p.idTipo = tp.idTipo
+GROUP BY tp.Nombre;
+
+USE finca;
+SELECT SUM(Total) AS Ingreso_Total
+FROM ventas
+WHERE Fecha BETWEEN '2024-01-01' AND '2024-01-07';
+
+USE finca;
+SELECT COUNT(*) AS Total_Empleados
+FROM empleados;
+
+USE finca;
+SELECT AVG(Salario) AS Promedio_Salario
+FROM empleados;
+
+USE finca;
+SELECT p.Nombre, ip.Cantidad
+FROM productos p
+JOIN inventario_productos ip ON p.idProducto = ip.idProducto
+WHERE ip.Estado = 'Disponible'
+ORDER BY ip.Cantidad DESC
+LIMIT 10; 
+
+USE finca;
+SELECT tm.Nombre AS Tipo_Maquinaria, COUNT(mm.idMantenimiento_Maquinaria) AS Total_Mantenimientos
+FROM mantenimiento_maquinaria mm
+JOIN tipo_maquinaria tm ON mm.idTipo_Maquinaria = tm.idTipo_Maquinaria
+GROUP BY tm.Nombre;
+
+
+USE finca;
+SELECT Tipo, COUNT(*) AS Total_Tareas
+FROM tareas
+GROUP BY Tipo_Tarea;
+
+USE finca;
+SELECT tp.Nombre AS Tipo_Producto, SUM(p.Precio) AS Ingreso_Generado
+FROM productos_ventas pv
+JOIN productos p ON pv.idProducto = p.idProducto
+JOIN tipo_productos tp ON p.idTipo = tp.idTipo
+GROUP BY tp.Nombre;
+
+
+USE finca;
+SELECT p.Nombre AS Proveedor, COUNT(op.idProducto) AS Total_Productos
+FROM proveedores p
+JOIN ordenes_compra op ON p.idProveedor = op.idProveedor
+GROUP BY p.Nombre
+ORDER BY Total_Productos DESC;
+
+

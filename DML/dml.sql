@@ -357,7 +357,7 @@ INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion)
 INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Jorge Fernández', 'Activo', 'VIP', '1995-07-15', 39);
 INSERT INTO finca.clientes (Nombre, Estado, Tipo, Fecha_Nacimiento, idDireccion) VALUES ('Beatriz Paredes', 'Activo', 'Premium', '1988-09-09', 30);
 
-INSERT INTO finca.empleados (Nombre, Apellido, Salario, Fecha_Contratacion, Fecha_Nacimiento, Hora_inicio, Hora_Finalizacion, Teleono, Estado, idCargo) VALUES 
+INSERT INTO finca.empleados (Nombre, Apellido, Salario, Fecha_Contratacion, Fecha_Nacimiento, Hora_inicio, Hora_Finalizacion, Telefono, Estado, idCargo) VALUES 
 ('Juan', 'Pérez', 2000000.00, '2023-01-15', '1990-05-20', '08:00:00', '17:00:00', 30012345, 'Activo', 1),
 ('María', 'García', 1800000.00, '2022-02-10', '1985-10-30', '09:00:00', '18:00:00', 30098765, 'Activo', 2),
 ('Carlos', 'López', 1500000.00, '2021-03-05', '1992-08-15', '07:30:00', '16:30:00', 30034567, 'Inactivo', 3),
@@ -392,10 +392,23 @@ INSERT INTO finca.empleados (Nombre, Apellido, Salario, Fecha_Contratacion, Fech
 ('Adriana', 'Castillo', 1500000.00, '2021-05-15', '1986-11-20', '08:00:00', '17:00:00', 30078901, 'Retirado', 32),
 ('Nicolás', 'García', 1600000.00, '2019-06-30', '1993-03-14', '09:00:00', '18:00:00', 30089012, 'Activo', 33),
 ('Samanta', 'Martínez', 1700000.00, '2020-07-05', '1991-04-11', '08:30:00', '17:30:00', 30090123, 'Activo', 34),
-('Leonardo', 'Vélez', 1400000.00, '2022-08-20', '1987-09-29', '08:00:00', '17:00:00', 30001234, 'Retirado', 35),
-('Sara', 'Moreno', 1950000.00, '2021-09-15', '1995-05-05', '07:00:00', '16:00:00', 30012345, 'Inactivo', 36),
-('Antonio', 'Díaz', 2500000.00, '2023-10-10', '1983-10-20', '08:00:00', '17:00:00', 30023456, 'Activo', 37),
-('Natalia', 'Alvarez', 1300000.00, '2019-11-01', '1989-12-01', '08:30:00', '17:30:00', 30034567, 'Retirado', 38);
+('Leonardo', 'Vélez', 1400000.00, '2022-08-20', '1992-05-28', '08:00:00', '17:00:00', 30001234, 'Inactivo', 35),
+('Paola', 'Mendoza', 2300000.00, '2023-09-10', '1985-06-16', '09:00:00', '18:00:00', 30012345, 'Activo', 36),
+('Cecilia', 'Reyes', 2200000.00, '2020-10-25', '1990-02-28', '08:00:00', '17:00:00', 30023456, 'Activo', 37),
+('Ángel', 'Téllez', 1500000.00, '2021-11-30', '1989-09-04', '07:00:00', '16:00:00', 30034567, 'Retirado', 38),
+('Olga', 'Jiménez', 1350000.00, '2022-12-20', '1995-01-19', '09:00:00', '18:00:00', 30045678, 'Activo', 39),
+('Gabriel', 'Torres', 1450000.00, '2023-01-15', '1988-03-17', '08:30:00', '17:30:00', 30056789, 'Activo', 40),
+('Karla', 'Pizarro', 1550000.00, '2020-02-10', '1994-04-25', '08:00:00', '17:00:00', 30067890, 'Inactivo', 41),
+('Héctor', 'Márquez', 1650000.00, '2021-03-15', '1985-08-21', '09:00:00', '18:00:00', 30078901, 'Activo', 42),
+('Renata', 'Santos', 1800000.00, '2019-04-20', '1993-12-30', '08:00:00', '17:00:00', 30089012, 'Activo', 43),
+('Mauricio', 'Pérez', 1900000.00, '2020-05-25', '1991-06-11', '07:30:00', '16:30:00', 30090123, 'Retirado', 44),
+('Diana', 'Vega', 2000000.00, '2021-06-30', '1989-02-08', '08:00:00', '17:00:00', 30001234, 'Activo', 45),
+('Cristian', 'Castaño', 2100000.00, '2022-07-05', '1992-10-15', '09:00:00', '18:00:00', 30012345, 'Activo', 46),
+('Sara', 'Cárdenas', 2400000.00, '2023-08-10', '1987-03-25', '08:30:00', '17:30:00', 30023456, 'Inactivo', 47),
+('Benjamín', 'Peña', 2500000.00, '2020-09-15', '1983-07-14', '08:00:00', '17:00:00', 30034567, 'Activo', 48),
+('Carmen', 'Salinas', 2600000.00, '2021-10-20', '1984-11-05', '09:00:00', '18:00:00', 30045678, 'Activo', 49),
+('Ivonne', 'Mora', 2700000.00, '2022-11-25', '1992-06-21', '08:00:00', '17:00:00', 30056789, 'Retirado', 50);
+
 
 
 INSERT INTO finca.tareas (Nombre, Fecha_Inicio, Fecha_Final, Prioridad, Tipo) VALUES 
@@ -541,7 +554,67 @@ INSERT INTO `finca`.`maquinaria` (`Nombre`, `Cantidad`, `Horas_Operativas`, `idT
 ('Camión de mantenimiento', 1, 900, 6, 4), -- Mantenimiento de maquinaria (Mantenimiento)
 ('Plataforma elevadora portátil', 1, 600, 6, 36), -- Preparación para la temporada de lluvias (Mantenimiento)
 ('Camión cisterna', 2, 1500, 6, 28), -- Verificación de sistemas de riego (Mantenimiento)
-('Sistema de climatización de invernaderos', 1, 800, 7, 37); -- Establecimiento de un programa de compostaje (Agrícola)
+('Sistema de climatización de invernaderos', 1, 800, 7, 37), -- Establecimiento de un programa de compostaje (Agrícola)
+('Barredora industrial', 1, 400, 11, 7), -- Limpieza de establos (Pecuario)
+('Sistema de monitoreo de animales', 1, 500, 7, 35), -- Evaluación de bienestar animal (Pecuario)
+('Cosechadora de arroz', 1, 900, 1, 18), -- Cosecha de arroz (Agrícola)
+('Cultivador de 5 surcos', 2, 700, 2, 29), -- Cosecha de legumbres (Agrícola)
+('Tractor New Holland', 2, 1300, 1, 1); -- Preparar terreno (Agrícola)
+
+
+
+
+
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (1, 1);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (2, 2);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (3, 3);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (4, 4);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (5, 5);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (6, 6);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (7, 7);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (8, 8);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (9, 9);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (10, 10);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (11, 11);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (12, 12);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (13, 13);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (14, 14);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (15, 15);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (16, 16);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (17, 17);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (18, 18);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (19, 19);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (20, 20);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (21, 21);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (22, 22);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (23, 23);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (24, 24);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (25, 25);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (26, 26);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (27, 27);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (28, 28);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (29, 29);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (30, 30);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (31, 31);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (32, 32);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (33, 33);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (34, 34);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (35, 35);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (36, 36);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (37, 37);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (38, 38);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (39, 39);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (40, 40);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (41, 41);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (42, 42);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (43, 43);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (44, 44);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (45, 45);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (46, 46);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (47, 47);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (48, 48);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (49, 49);
+INSERT INTO finca.empleados_maquinaria (idMaquinaria, idEmpleado) VALUES (50, 50);
 
 
 INSERT INTO finca.herramientas (Nombre, Cantidad, Ubicacion, Estado, Fecha_Adquisicion) VALUES
@@ -1162,7 +1235,7 @@ INSERT INTO `finca`.`mantenimiento_maquinaria` (Fecha, idTipo_Maquinaria, idMaqu
 ('2024-11-18', 4, 42),
 ('2024-11-19', 5, 40);
 
-INSERT INTO `finca`.`manteniminto_herramientas` (Fecha, Tipo, idHerramienta) VALUES
+INSERT INTO `finca`.`mantenimiento_herramientas` (Fecha, Tipo, idHerramienta) VALUES
 ('2024-10-01', 'Reparación', 1),
 ('2024-10-02', 'Mantenimiento Preventivo', 2),
 ('2024-10-03', 'Reparación', 3),
