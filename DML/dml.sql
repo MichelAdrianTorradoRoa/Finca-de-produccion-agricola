@@ -543,3 +543,207 @@ INSERT INTO `finca`.`maquinaria` (`Nombre`, `Cantidad`, `Horas_Operativas`, `idT
 ('Sistema de climatización de invernaderos', 1, 800, 7, 37); -- Establecimiento de un programa de compostaje (Agrícola)
 
 
+INSERT INTO finca.herramientas (Nombre, Cantidad, Ubicacion, Estado, Fecha_Adquisicion) VALUES
+('Azadón', 15, 'Almacén Central', 'Bueno', '2022-01-15'),
+('Pala', 20, 'Bodega Norte', 'Bueno', '2022-03-01'),
+('Rastrillo', 10, 'Bodega Sur', 'Regular', '2021-07-20'),
+('Machete', 25, 'Almacén Central', 'Bueno', '2023-02-10'),
+('Carretilla', 8, 'Zona de Talleres', 'Bueno', '2020-10-05'),
+('Hacha', 12, 'Bodega Norte', 'Bueno', '2021-06-15'),
+('Cortadora de Césped', 5, 'Almacén Central', 'Reparación', '2019-12-12'),
+('Tijeras de podar', 30, 'Bodega Sur', 'Bueno', '2022-11-30'),
+('Desbrozadora', 6, 'Zona de Talleres', 'Bueno', '2021-08-25'),
+('Llave inglesa', 40, 'Almacén Central', 'Bueno', '2023-04-10'),
+('Martillo', 35, 'Bodega Norte', 'Bueno', '2022-06-15'),
+('Taladro eléctrico', 10, 'Zona de Talleres', 'Reparación', '2020-09-05'),
+('Cinta métrica', 50, 'Bodega Sur', 'Bueno', '2023-05-10'),
+('Destornillador', 45, 'Almacén Central', 'Bueno', '2021-12-22'),
+('Sierra manual', 18, 'Bodega Norte', 'Regular', '2020-07-25'),
+('Escalera de mano', 7, 'Zona de Talleres', 'Bueno', '2021-03-30'),
+('Regadera', 20, 'Almacén Central', 'Bueno', '2023-01-19'),
+('Pulverizador', 10, 'Bodega Sur', 'Bueno', '2022-04-01'),
+('Llave de tubo', 12, 'Zona de Talleres', 'Bueno', '2020-11-14'),
+('Nivel de burbuja', 25, 'Bodega Norte', 'Bueno', '2023-03-12'),
+('Sierra eléctrica', 5, 'Almacén Central', 'Reparación', '2019-10-18'),
+('Lijadora', 8, 'Bodega Sur', 'Bueno', '2022-05-23'),
+('Cincel', 15, 'Zona de Talleres', 'Bueno', '2021-01-11'),
+('Barreta', 12, 'Almacén Central', 'Bueno', '2022-08-17'),
+('Manguera de jardín', 20, 'Bodega Norte', 'Bueno', '2023-02-05'),
+('Compresor de aire', 3, 'Zona de Talleres', 'Reparación', '2020-06-21'),
+('Pulidora', 10, 'Almacén Central', 'Bueno', '2021-11-15'),
+('Cepillo de carpintero', 18, 'Bodega Sur', 'Bueno', '2022-09-05'),
+('Llave Allen', 30, 'Almacén Central', 'Bueno', '2023-06-20'),
+('Escoba de jardín', 22, 'Bodega Norte', 'Bueno', '2021-04-22'),
+('Pico', 14, 'Zona de Talleres', 'Bueno', '2022-02-11'),
+('Serrucho', 18, 'Almacén Central', 'Regular', '2020-12-25'),
+('Tornillo de banco', 5, 'Bodega Sur', 'Bueno', '2023-04-18'),
+('Alicates', 40, 'Bodega Norte', 'Bueno', '2021-08-01'),
+('Nivel láser', 6, 'Zona de Talleres', 'Reparación', '2021-07-19'),
+('Carro de mano', 7, 'Almacén Central', 'Bueno', '2022-11-05'),
+('Guadaña', 8, 'Bodega Sur', 'Bueno', '2020-05-30'),
+('Soplete', 5, 'Zona de Talleres', 'Bueno', '2021-06-20'),
+('Prensa de banco', 4, 'Bodega Norte', 'Bueno', '2022-03-25'),
+('Sierra circular', 5, 'Almacén Central', 'Reparación', '2019-11-30'),
+('Multímetro', 10, 'Bodega Sur', 'Bueno', '2021-09-15'),
+('Cuchilla', 50, 'Bodega Norte', 'Bueno', '2023-07-08'),
+('Clavadora', 12, 'Almacén Central', 'Bueno', '2022-07-02'),
+('Sargento de carpintero', 10, 'Bodega Sur', 'Bueno', '2020-08-12'),
+('Cuerda de amarre', 25, 'Zona de Talleres', 'Bueno', '2023-02-27'),
+('Pintura en aerosol', 50, 'Almacén Central', 'Bueno', '2021-10-05'),
+('Termómetro de suelo', 5, 'Bodega Norte', 'Bueno', '2023-03-18'),
+('Medidor de humedad', 8, 'Bodega Sur', 'Bueno', '2021-12-08'),
+('Pinzas de presión', 15, 'Almacén Central', 'Bueno', '2020-04-22');
+
+INSERT INTO finca.ventas (Fecha, Total, idEmpleado, idCliente) VALUES
+('2024-01-05', 350000.50, 1, 1),
+('2024-01-10', 275000.75, 2, 3),
+('2024-01-15', 180000.00, 3, 2),
+('2024-01-20', 120000.50, 4, 5),
+('2024-01-25', 500000.00, 5, 4),
+('2024-01-30', 600000.80, 6, 1),
+('2024-02-05', 450000.25, 7, 2),
+('2024-02-10', 370000.00, 8, 3),
+('2024-02-15', 220000.90, 9, 5),
+('2024-02-20', 150000.00, 10, 4),
+('2024-02-25', 320000.50, 1, 1),
+('2024-03-01', 400000.75, 2, 2),
+('2024-03-05', 550000.60, 3, 3),
+('2024-03-10', 480000.30, 4, 5),
+('2024-03-15', 600000.00, 5, 4),
+('2024-03-20', 500000.00, 6, 1),
+('2024-03-25', 750000.20, 7, 2),
+('2024-03-30', 620000.70, 8, 3),
+('2024-04-05', 420000.50, 9, 5),
+('2024-04-10', 200000.00, 10, 4),
+('2024-04-15', 320000.75, 1, 2),
+('2024-04-20', 450000.30, 2, 3),
+('2024-04-25', 550000.00, 3, 1),
+('2024-04-30', 400000.50, 4, 5),
+('2024-05-05', 700000.75, 5, 4),
+('2024-05-10', 820000.25, 6, 2),
+('2024-05-15', 480000.00, 7, 3),
+('2024-05-20', 300000.40, 8, 1),
+('2024-05-25', 620000.50, 9, 5),
+('2024-05-30', 150000.00, 10, 4),
+('2024-06-05', 180000.50, 1, 1),
+('2024-06-10', 225000.75, 2, 2),
+('2024-06-15', 340000.00, 3, 3),
+('2024-06-20', 270000.30, 4, 5),
+('2024-06-25', 600000.00, 5, 4),
+('2024-06-30', 500000.50, 6, 1),
+('2024-07-05', 750000.75, 7, 2),
+('2024-07-10', 620000.20, 8, 3),
+('2024-07-15', 420000.30, 9, 5),
+('2024-07-20', 210000.00, 10, 4),
+('2024-07-25', 300000.50, 1, 1),
+('2024-07-30', 550000.70, 2, 3),
+('2024-08-05', 720000.40, 3, 2),
+('2024-08-10', 370000.00, 4, 5),
+('2024-08-15', 800000.25, 5, 4),
+('2024-08-20', 900000.50, 6, 1),
+('2024-08-25', 420000.00, 7, 2),
+('2024-08-30', 670000.70, 8, 3),
+('2024-09-05', 200000.50, 9, 5);
+
+
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-01-05', 1);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-01-10', 2);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-01-15', 3);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-01-20', 4);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-01-25', 5);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-02-01', 6);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-02-05', 7);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-02-10', 8);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-02-15', 9);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-02-20', 10);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-02-25', 11);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-03-01', 12);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-03-05', 13);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-03-10', 14);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-03-15', 15);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-03-20', 16);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-03-25', 17);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-04-01', 18);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-04-05', 19);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-04-10', 20);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-04-15', 21);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-04-20', 22);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-04-25', 23);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-05-01', 24);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-05-05', 25);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-05-10', 26);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-05-15', 27);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-05-20', 28);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-05-25', 29);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-06-01', 30);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-06-05', 31);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-06-10', 32);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-06-15', 33);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-06-20', 34);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-06-25', 35);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-07-01', 36);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-07-05', 37);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-07-10', 38);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-07-15', 39);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-07-20', 40);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-07-25', 41);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-08-01', 42);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-08-05', 43);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-08-10', 44);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-08-15', 45);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-08-20', 46);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-08-25', 47);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-09-01', 48);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-09-05', 49);
+INSERT INTO finca.historial_ventas (Fecha, idVenta) VALUES ('2024-09-10', 50);
+
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (10, 'Nuevo', '2024-01-01', 1);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (8, 'Usado', '2024-01-05', 2);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (15, 'Nuevo', '2024-01-10', 3);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (12, 'Reparado', '2024-01-15', 4);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (9, 'Usado', '2024-01-20', 5);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (7, 'Dañado', '2024-01-25', 6);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (5, 'Nuevo', '2024-02-01', 7);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (20, 'Usado', '2024-02-05', 8);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (18, 'Reparado', '2024-02-10', 9);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (10, 'Nuevo', '2024-02-15', 10);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (14, 'Dañado', '2024-02-20', 11);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (12, 'Nuevo', '2024-02-25', 12);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (6, 'Usado', '2024-03-01', 13);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (11, 'Reparado', '2024-03-05', 14);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (9, 'Nuevo', '2024-03-10', 15);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (7, 'Dañado', '2024-03-15', 16);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (5, 'Usado', '2024-03-20', 17);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (16, 'Nuevo', '2024-03-25', 18);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (14, 'Reparado', '2024-04-01', 19);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (12, 'Nuevo', '2024-04-05', 20);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (20, 'Dañado', '2024-04-10', 21);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (18, 'Usado', '2024-04-15', 22);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (8, 'Nuevo', '2024-04-20', 23);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (6, 'Reparado', '2024-04-25', 24);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (14, 'Usado', '2024-05-01', 25);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (10, 'Nuevo', '2024-05-05', 26);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (16, 'Reparado', '2024-05-10', 27);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (9, 'Dañado', '2024-05-15', 28);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (5, 'Nuevo', '2024-05-20', 29);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (12, 'Usado', '2024-05-25', 30);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (7, 'Reparado', '2024-06-01', 31);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (20, 'Nuevo', '2024-06-05', 32);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (18, 'Dañado', '2024-06-10', 33);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (10, 'Nuevo', '2024-06-15', 34);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (15, 'Reparado', '2024-06-20', 35);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (8, 'Usado', '2024-06-25', 36);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (12, 'Nuevo', '2024-07-01', 37);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (14, 'Reparado', '2024-07-05', 38);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (7, 'Dañado', '2024-07-10', 39);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (16, 'Nuevo', '2024-07-15', 40);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (11, 'Usado', '2024-07-20', 41);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (6, 'Reparado', '2024-07-25', 42);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (19, 'Nuevo', '2024-08-01', 43);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (17, 'Dañado', '2024-08-05', 44);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (9, 'Reparado', '2024-08-10', 45);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (7, 'Usado', '2024-08-15', 46);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (13, 'Nuevo', '2024-08-20', 47);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (15, 'Reparado', '2024-08-25', 48);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (12, 'Dañado', '2024-09-01', 49);
+INSERT INTO finca.inventario_herramientas (Cantidad, Estado, Fecha, idHerramienta) VALUES (18, 'Nuevo', '2024-09-05', 50);
