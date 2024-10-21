@@ -1,0 +1,138 @@
+-- Funcion para calcular el total de las ordenes de compra a proveedores
+DELIMITER //
+CREATE FUNCTION calcular_total_compras()
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+DECLARE Total_Compras DECIMAL(10,2);
+SELECT SUM(Total) INTO Total_Compras
+FROM ordenes_compra;
+RETURN Total_Compras;
+END //
+DELIMITER ;
+
+-- Funcion para calcular el precio promedio de las ventas
+DELIMITER //
+CREATE FUNCTION calcular_promedio_ventas()
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+DECLARE Promedio DECIMAL(10,2);
+SELECT AVG(Total) INTO Promedio
+FROM ventas;
+RETURN Promedio;
+END //
+DELIMITER ;
+
+-- Funcion para calcular el precio de los productos con el 10% de descuento
+DELIMITER //
+CREATE FUNCTION calcular_descuento_productos()
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+DECLARE TotalConDescuento DECIMAL(10,2);
+SELECT SUM(Precio - (Precio * 0.10)) INTO TotalConDescuento
+FROM productos;
+RETURN TotalConDescuento;
+END //
+DELIMITER ;
+
+-- Funcion para calcular el costo total de una venta
+DELIMITER //
+CREATE FUNCTION calcular_total_venta(idVenta INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+DECLARE Total DECIMAL(10,2);
+SELECT Total INTO Total
+FROM ventas
+WHERE idVenta = idVenta
+LIMIT 1;
+RETURN Total;
+END //
+DELIMITER ;
+
+-- Funcion para obtener la cantidad de productos vendidos en un dia en especifico
+DELIMITER //
+CREATE FUNCTION cantidad_productos_vendidos(fecha DATE)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+DECLARE total_vendidos INT;
+SELECT SUM(v.idVenta) INTO total_vendidos
+FROM ventas v
+WHERE v.Fecha = fecha;
+RETURN IFNULL(total_vendidos, 0); 
+END //
+DELIMITER ;
+
+-- Funcion para cacular de total de las ventas en un mes
+DELIMITER //
+CREATE FUNCTION total_ventas_mes(mes INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+DECLARE total_ventas DECIMAL(10,2);
+SELECT SUM(Total) INTO total_ventas
+FROM finca.ventas
+WHERE MONTH(Fecha) = mes;
+RETURN IFNULL(total_ventas, 0); 
+END //
+DELIMITER ;
+
+-- Funcion para calcular la cantidad de produccion entre dos fechas
+DELIMITER //
+CREATE FUNCTION cantidad_produccion_entre_fechas(fecha_inicio DATE, fecha_fin DATE)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+DECLARE total_produccion INT;
+SELECT SUM(Cantidad) INTO total_produccion
+FROM produccion
+WHERE Fecha BETWEEN fecha_inicio AND fecha_fin;
+RETURN IFNULL(total_produccion, 0);
+END //
+DELIMITER ;
+
+-- Funcion para calcular el total de clientes en una fecha de venta
+DELIMITER //
+CREATE FUNCTION total_clientes_ultimo_mes(fecha DATE)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+DECLARE total_clientes INT;
+SELECT COUNT(idCliente) INTO total_clientes
+FROM ventas
+WHERE Fecha = fecha;
+RETURN IFNULL(total_clientes, 0);
+END //
+DELIMITER ;
+
+-- Funcion para obtener el promedio de ventas por empleado
+DELIMITER //
+CREATE FUNCTION promedio_ventas_por_empleado(idEmpleado INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+DECLARE promedio DECIMAL(10,2);
+SELECT AVG(Total) INTO promedio
+FROM ventas
+WHERE idEmpleado = idEmpleado;
+RETURN IFNULL(promedio, 0); 
+END //
+DELIMITER ;
+
+-- Funcion para calcular el total de hectareas por tipo de terreno
+DELIMITER //
+CREATE FUNCTION total_hectareas_por_tipo(tipo_terreno VARCHAR(45))
+RETURNS INT
+DETERMINISTIC
+BEGIN
+DECLARE total_hectareas INT;
+SELECT SUM(Hectareas) INTO total_hectareas
+FROM terreno_pecuario
+WHERE Tipo = tipo_terreno;
+RETURN IFNULL(total_hectareas, 0); 
+END //
+DELIMITER ;
+
