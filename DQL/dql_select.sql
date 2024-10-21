@@ -21,7 +21,7 @@ WHERE idHerramienta IN (
 
 -- Obtener la cantidad de productos en el inventario
 USE finca;
-SELECT COUNT(*) AS Total_Productos
+SELECT COUNT(*) AS Productos
 FROM productos
 WHERE idProducto IN (
     SELECT idProducto
@@ -99,27 +99,27 @@ WHERE p.Precio > (
 
 
 USE finca;
-SELECT SUM(Total) AS Total_Ventas
+SELECT SUM(Total) AS Ventas
 FROM ventas;
 
 USE finca;
-SELECT tp.Nombre AS Categoria, COUNT(pv.idProducto) AS Total_Vendidos
+SELECT tp.Nombre AS Categoria, COUNT(pv.idProducto) AS Vendidos
 FROM productos_ventas pv
 JOIN productos p ON pv.idProducto = p.idProducto
 JOIN tipo_productos tp ON p.idTipo = tp.idTipo
 GROUP BY tp.Nombre;
 
 USE finca;
-SELECT SUM(Total) AS Ingreso_Total
+SELECT SUM(Total) AS Ingresos
 FROM ventas
 WHERE Fecha BETWEEN '2024-01-01' AND '2024-01-07';
 
 USE finca;
-SELECT COUNT(*) AS Total_Empleados
+SELECT COUNT(*) AS Empleados
 FROM empleados;
 
 USE finca;
-SELECT AVG(Salario) AS Promedio_Salario
+SELECT AVG(Salario) AS Promedio
 FROM empleados;
 
 USE finca;
@@ -131,19 +131,19 @@ ORDER BY ip.Cantidad DESC
 LIMIT 10; 
 
 USE finca;
-SELECT tm.Nombre AS Tipo_Maquinaria, COUNT(mm.idMantenimiento_Maquinaria) AS Total_Mantenimientos
+SELECT tm.Nombre AS Tipo_Maquinaria, COUNT(mm.idMantenimiento_Maquinaria) AS Mantenimientos
 FROM mantenimiento_maquinaria mm
 JOIN tipo_maquinaria tm ON mm.idTipo_Maquinaria = tm.idTipo_Maquinaria
 GROUP BY tm.Nombre;
 
 
 USE finca;
-SELECT Tipo, COUNT(*) AS Total_Tareas
+SELECT Tipo, COUNT(*) AS Tareas
 FROM tareas
 GROUP BY Tipo_Tarea;
 
 USE finca;
-SELECT tp.Nombre AS Tipo_Producto, SUM(p.Precio) AS Ingreso_Generado
+SELECT tp.Nombre AS Tipo_Producto, SUM(p.Precio) AS Ingresos
 FROM productos_ventas pv
 JOIN productos p ON pv.idProducto = p.idProducto
 JOIN tipo_productos tp ON p.idTipo = tp.idTipo
@@ -151,7 +151,7 @@ GROUP BY tp.Nombre;
 
 
 USE finca;
-SELECT p.Nombre AS Proveedor, COUNT(op.idProducto) AS Total_Productos
+SELECT p.Nombre AS Proveedor, COUNT(op.idProducto) AS Productos
 FROM proveedores p
 JOIN ordenes_compra op ON p.idProveedor = op.idProveedor
 GROUP BY p.Nombre
@@ -166,13 +166,13 @@ WHERE i.Estado = 'Disponible';
 
 -- Obtener el total de produccion agricola
 USE finca;
-SELECT idAgricola, SUM(Cantidad) AS Total_Produccion
+SELECT idAgricola, SUM(Cantidad) AS Produccion
 FROM produccion
 GROUP BY idAgricola;
 
 -- Obtener el total de compras por proveedor
 USE finca;
-SELECT p.Nombre, COUNT(oc.idOrdenes_Compra) AS Total_Ordenes
+SELECT p.Nombre, COUNT(oc.idOrdenes_Compra) AS Total
 FROM proveedores p
 JOIN ordenes_compra oc ON p.idProveedor = oc.idProveedor
 GROUP BY p.Nombre;
@@ -186,7 +186,7 @@ JOIN finca.tareas t ON th.idTarea = t.idTarea;
 
 -- Obtener las ventas totales por cada producto
 USE finca;
-SELECT p.Nombre, SUM(v.Total) AS Total_Ventas
+SELECT p.Nombre, SUM(v.Total) AS Total
 FROM productos p
 JOIN productos_ventas pv ON p.idProducto = pv.idProducto
 JOIN ventas v ON pv.idVenta = v.idVenta
@@ -194,7 +194,7 @@ GROUP BY p.Nombre;
 
 -- Obtener la cantidad de maquinaria por cada tipo
 USE finca;
-SELECT idTipo_Maquinaria, COUNT(*) AS Total_Maquinaria
+SELECT idTipo_Maquinaria, COUNT(*) Maquinarias
 FROM maquinaria
 GROUP BY idTipo_Maquinaria;
 
@@ -240,7 +240,7 @@ WHERE idHerramienta NOT IN (
 
 -- Obtener la cantidad de proveedores que tienen orden de compra
 USE finca;
-SELECT COUNT(DISTINCT idProveedor) AS Total_Proveedores
+SELECT COUNT(DISTINCT idProveedor) AS Proveedores
 FROM ordenes_compra;
 
 -- Obtener la ultima fecha de mantenimiento de cada maquinaria
@@ -251,7 +251,7 @@ GROUP BY nombre;
 
 -- Obtener la cantidad total de productos de cada proveedor
 USE finca;
-SELECT p.Nombre AS Proveedor, SUM(pv.Cantidad) AS Total_Productos
+SELECT p.Nombre AS Proveedor, SUM(pv.Cantidad) AS Productos
 FROM proveedores p
 JOIN ordenes_compra oc ON p.idProveedor = oc.idProveedor
 JOIN productos p ON oc.idProducto = p.idProducto
@@ -266,7 +266,7 @@ JOIN productos p ON pv.idProducto = p.idProducto;
 
 -- Obtener la cantidad de tareas con sus herramientas usadas
 USE finca;
-SELECT COUNT(DISTINCT t.idTarea) AS Total_Tareas, COUNT(DISTINCT h.idHerramienta) AS Total_Herramientas
+SELECT COUNT(DISTINCT t.idTarea) AS Total_Tareas, COUNT(DISTINCT h.idHerramienta) AS Herramientas
 FROM tareas_herramientas th
 JOIN tareas t ON th.idTarea = t.idTarea
 JOIN herramientas h ON th.idHerramienta = h.idHerramienta;
@@ -328,13 +328,13 @@ WHERE Fecha BETWEEN '2024-01-01' AND '2024-01-31';
 
 -- Obtener la cantidad de mantenimiento por tipo de maquinaria
 USE finca;
-SELECT m.idTipo_Maquinaria, COUNT(*) AS Total_Mantenimiento
+SELECT m.idTipo_Maquinaria, COUNT(*) AS Mantenimientos
 FROM mantenimiento_maquinaria m
 GROUP BY m.idTipo_Maquinaria;
 
 -- Obtener las herramientas por el estado de su mantenimiento
 USE finca;
-SELECT Estado_Mantenimiento, COUNT(*) AS Total_Herramientas
+SELECT Estado_Mantenimiento, COUNT(*) AS Herramientas
 FROM herramientas
 GROUP BY Estado_Mantenimiento;
 
@@ -349,13 +349,13 @@ WHERE p.idProveedor NOT IN (
 
 -- Obtener los productos que estan agotados
 USE finca;
-SELECT COUNT(*) AS Productos_Agotados
+SELECT COUNT(*) AS Agotados
 FROM inventario_productos
 WHERE Cantidad = 0;
 
 -- Obtener los productos mas vendidos
 USE finca;
-SELECT p.Nombre, COUNT(*) AS Total_Ventas
+SELECT p.Nombre, COUNT(*) AS Total
 FROM productos p
 JOIN productos_ventas pv ON p.idProducto = pv.idProducto
 GROUP BY p.Nombre
@@ -364,13 +364,13 @@ LIMIT 10;
 
 -- Obtener la cantidad de mantenimientos durante el ultimo mes
 USE finca;
-SELECT COUNT(*) AS Total_Mantenimiento
+SELECT COUNT(*) AS Mantenimientos
 FROM mantenimiento_maquinaria
 WHERE Fecha >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);
 
 -- Obtener el total de ventas durante el mes de enero
 USE finca;
-SELECT COUNT(*) AS Total_Ventas, SUM(Total) AS Total_Venta
+SELECT COUNT(*) AS Total_Ventas, SUM(Total) AS Total
 FROM ventas
 WHERE Fecha BETWEEN '2024-01-01' AND '2024-01-31';
 
@@ -381,7 +381,7 @@ FROM proveedores;
 
 -- Obtener todos los productos junto a su tipo
 USE finca;
-SELECT p.Nombre AS Producto, tp.Nombre AS Tipo_Producto
+SELECT p.Nombre AS Producto, tp.Nombre AS Tipo
 FROM productos p
 JOIN tipo_productos tp ON p.idTipo = tp.idTipo;
 
@@ -394,7 +394,7 @@ ORDER BY v.Fecha;
 
 -- Obtener herramientas que han sido mantenidas almenos una vez
 USE finca;
-SELECT h.Nombre, COUNT(mh.idManteniminto_Herramientas) AS Total_Mantenimientos
+SELECT h.Nombre, COUNT(mh.idManteniminto_Herramientas) AS Mantenimientos
 FROM herramientas h
 JOIN manteniminto_herramientas mh ON h.idHerramienta = mh.idHerramienta
 GROUP BY h.Nombre
