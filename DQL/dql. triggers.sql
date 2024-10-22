@@ -112,7 +112,7 @@ DELIMITER ;
 -- Verificar inventario suficiente para una venta
 DELIMITER //
 CREATE TRIGGER verificar_inventario_antes_venta
-BEFORE INSERT ON productos_ventas
+BEFORE INSERT ON ventas
 FOR EACH ROW
 BEGIN
 DECLARE cantidad_disponible INT;
@@ -156,3 +156,135 @@ VALUES (CONCAT('venta eliminada: ', OLD.idVenta), CURDATE(), OLD.idVenta);
 END //
 DELIMITER ;
 
+-- Actualizar la cantidad de herramientas cuando sea alta
+DELIMITER //
+CREATE TRIGGER actualizar_cantidad_herramienta_tarea
+AFTER UPDATE ON tareas
+FOR EACH ROW
+BEGIN
+  IF NEW.Prioridad = 'Alta' THEN
+    UPDATE inventario_herramientas ih
+    JOIN tareas_herramientas th ON ih.idHerramienta = th.idHerramienta
+    SET ih.Cantidad_Disponible = ih.Cantidad_Disponible + th.Cantidad_Usada
+    WHERE th.idTarea = NEW.idTarea;
+  END IF;
+END //
+DELIMITER ;
+
+-- Registrar auditoría de la eliminación de un empleado
+DELIMITER //
+CREATE TRIGGER auditoria_eliminacion_empleado
+BEFORE DELETE ON empleados
+FOR EACH ROW
+BEGIN
+  INSERT INTO auditoria_empleados (idEmpleado, Nombre, Fecha_Eliminacion)
+  VALUES (OLD.idEmpleado, OLD.Nombre, NOW());
+END //
+DELIMITER ;
+
+
+-- Actualizar estado de orden de compra al recibir el producto
+DELIMITER //
+CREATE TRIGGER actualizar_estado_orden_compra
+AFTER UPDATE ON ordenes_compra
+FOR EACH ROW
+BEGIN
+  IF NEW.Total >= '1500' THEN
+    UPDATE ordenes_compra
+    SET Estado = 'Completada'
+    WHERE idordenes_compra= NEW.idordenes_compra;
+  END IF;
+END //
+DELIMITER ;
+
+--  Actualizar inventario de animales tras una recolección
+DELIMITER //
+CREATE TRIGGER actualizar_inventario_recoleccion
+AFTER INSERT ON produccion_pecuaria
+FOR EACH ROW
+BEGIN
+  UPDATE inventario_productos
+  SET Cantidad = Cantidad + NEW.Cantidad_Producida
+  WHERE idProducto = NEW.idProducto;
+END //
+DELIMITER ;
+
+-- Evitar modificar el salario de empleados retirados
+DELIMITER //
+CREATE TRIGGER evitar_modificacion_salario_retirado
+BEFORE UPDATE ON empleados
+FOR EACH ROW
+BEGIN
+  IF OLD.Estado = 'Retirado' THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'No se puede modificar el salario de un empleado retirado';
+  END IF;
+END //
+DELIMITER ;
+
+-- Registrar auditoría de la modificación de una orden de compra
+DELIMITER //
+CREATE TRIGGER auditoria_modificacion_orden_compra
+AFTER UPDATE ON ordenes_compra
+FOR EACH ROW
+BEGIN
+  INSERT INTO auditoria_ordenes_compra (idOrdenCompra, Cambios, Fecha)
+  VALUES (NEW.idOrdenCompra, CONCAT('Estado anterior: ', OLD.Estado, ', Estado nuevo: ', NEW.Estado), NOW());
+END //
+DELIMITER ;
+
+-- Evitar eliminar maquinaria en mantenimiento
+DELIMITER //
+CREATE TRIGGER evitar_eliminar_maquinaria_mantenimiento
+BEFORE DELETE ON maquinarias
+FOR EACH ROW
+BEGIN
+  IF OLD.Estado = 'Mantenimiento' THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'No se puede eliminar una maquinaria en mantenimiento';
+  END IF;
+END //
+DELIMITER ;
+
+--  Actualizar estado de una tarea al completar una inspección
+DELIMITER //
+CREATE TRIGGER actualizar_estado_tarea_inspeccion
+AFTER UPDATE ON inspecciones_tareas
+FOR EACH ROW
+BEGIN
+  IF NEW.Estado_Inspeccion = 'Aprobada' THEN
+    UPDATE tareas
+    SET Estado = 'Revisada'
+    WHERE idTarea = NEW.idTarea;
+  END IF;
+END //
+DELIMITER ;
+
+-- Prevenir la inserción de ventas con clientes inactivos
+DELIMITER //
+CREATE TRIGGER prevenir_venta_cliente_inactivo
+BEFORE INSERT ON ventas
+FOR EACH ROW
+BEGIN
+  DECLARE estado_cliente VARCHAR(20);
+  SELECT Estado INTO estado_cliente
+  FROM clientes
+  WHERE idCliente = NEW.idCliente;
+
+  IF estado_cliente = 'Inactivo' THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'No se pueden realizar ventas a clientes inactivos';
+  END IF;
+END //
+DELIMITER ;
+
+ -- Registrar eliminación de una orden de compra
+ DELIMITER //
+CREATE TRIGGER registrar_eliminacion_orden_compra
+BEFORE DELETE ON ordenes_compra
+FOR EACH ROW
+BEGIN
+  INSERT INTO log_ordenes_compra (Mensaje, Fecha, idOrdenCompra)
+  VALUES (CONCAT('Orden de compra eliminada: ', OLD.idOrdenCompra), CURDATE(), OLD.idOrdenCompra);
+END //
+DELIMITER ;
