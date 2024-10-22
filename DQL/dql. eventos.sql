@@ -154,3 +154,149 @@ INSERT INTO log_ventas (Mensaje, Fecha, idVenta)
 VALUES (mensaje, CURRENT_DATE - INTERVAL 1 MONTH, NULL);
 END //
 DELIMITER ;
+
+-- Actualización Semanal del Estado de Mantenimiento de Maquinarias
+DELIMITER //
+CREATE EVENT IF NOT EXISTS actualizar_estado_mantenimiento_maquinaria
+ON SCHEDULE EVERY 1 WEEK
+STARTS '2024-10-23 00:00:00'
+DO
+BEGIN
+    INSERT INTO log_maquinarias (Fecha, Mensaje, idMaquinaria)
+    SELECT CURDATE(), CONCAT('La maquinaria con ID ', idMaquinaria, ' requiere mantenimiento'), idMaquinaria
+    FROM maquinarias
+    WHERE CURDATE() > DATE_ADD(Ultimo_Mantenimiento, INTERVAL 30 DAY);
+END //
+DELIMITER ;
+
+-- Calcular el Uso de Agua en el Sistema de Riego Mensualmente
+DELIMITER //
+CREATE EVENT IF NOT EXISTS calcular_uso_agua_mensual
+ON SCHEDULE EVERY 1 MONTH
+STARTS '2024-11-01 00:00:00'
+DO
+BEGIN
+    DECLARE total_agua DECIMAL(10, 2);
+    SELECT SUM(Cantidad_Agua) INTO total_agua
+    FROM riego
+    WHERE MONTH(Fecha) = MONTH(CURDATE() - INTERVAL 1 MONTH);
+    INSERT INTO log_agua (Fecha, Mensaje, Cantidad)
+    VALUES (CURDATE(), CONCAT('Consumo total de agua en ', DATE_FORMAT(CURDATE() - INTERVAL 1 MONTH, '%M %Y'), ': ', total_agua, ' litros'), total_agua);
+END //
+DELIMITER ;
+
+--  Recalcular el Stock de Productos Perecederos Diario
+DELIMITER //
+CREATE EVENT IF NOT EXISTS actualizar_stock_perecederos_diario
+ON SCHEDULE EVERY 1 DAY
+STARTS '2024-10-23 02:00:00'
+DO
+BEGIN
+    UPDATE inventario_productos
+    SET Cantidad = Cantidad - (Cantidad * 0.02)
+    WHERE Tipo = 'Perecedero';
+END //
+DELIMITER ;
+
+-- Evaluar Animales en Riesgo Basado en su Edad
+DELIMITER //
+CREATE EVENT IF NOT EXISTS evaluar_animales_en_riesgo
+ON SCHEDULE EVERY 1 MONTH
+STARTS '2024-11-01 00:00:00'
+DO
+BEGIN
+    UPDATE pecuario
+    SET Estado = 'En Riesgo'
+    WHERE Edad > 10;  -- Animales con más de 10 años
+END //
+DELIMITER ;
+
+-- Auditoría Mensual de Herramientas Usadas en Tareas
+DELIMITER //
+CREATE EVENT IF NOT EXISTS auditoria_herramientas_mensual
+ON SCHEDULE EVERY 1 MONTH
+STARTS '2024-11-01 00:00:00'
+DO
+BEGIN
+    INSERT INTO auditoria_herramientas (Fecha, idHerramienta, Tarea)
+    SELECT CURDATE(), idHerramienta, Tarea
+    FROM tareas_herramientas
+    WHERE MONTH(Fecha) = MONTH(CURDATE() - INTERVAL 1 MONTH);
+END //
+DELIMITER ;
+
+-- Recalcular el Precio de Productos Basado en su Demanda
+DELIMITER //
+CREATE EVENT IF NOT EXISTS ajustar_precios_por_demanda
+ON SCHEDULE EVERY 1 MONTH
+DO
+BEGIN
+    UPDATE productos p
+    SET p.Precio = p.Precio * 1.05
+    WHERE p.idProducto IN (
+        SELECT idProducto
+        FROM producto_venta
+        GROUP BY idProducto
+        HAVING COUNT(idProducto) > 50  -- Si se vendieron más de 50 unidades
+    );
+END //
+DELIMITER ;
+
+-- Limpieza Automática de Registros Antiguos en la Tabla Log
+DELIMITER //
+CREATE EVENT IF NOT EXISTS limpiar_registros_antiguos_log
+ON SCHEDULE EVERY 1 MONTH
+STARTS '2024-11-01 00:00:00'
+DO
+BEGIN
+    DELETE FROM log_ventas
+    WHERE Fecha < CURDATE() - INTERVAL 1 YEAR;
+END //
+DELIMITER ;
+
+--  Enviar Recordatorios para Capacitación de Personal
+DELIMITER //
+CREATE EVENT IF NOT EXISTS recordatorio_capacitacion_personal
+ON SCHEDULE EVERY 1 WEEK
+STARTS '2024-10-24 09:00:00'
+DO
+BEGIN
+    INSERT INTO log_empleados (Fecha, Mensaje, idEmpleado)
+    SELECT CURDATE(), CONCAT('Capacitación programada el ', Fecha_Capacitacion), idEmpleado
+    FROM empleados
+    WHERE Fecha_Capacitacion BETWEEN CURDATE() AND CURDATE() + INTERVAL 7 DAY;
+END //
+DELIMITER ;
+
+-- Ajustar el Stock de Productos Basado en Ventas Semanales
+DELIMITER //
+CREATE EVENT IF NOT EXISTS ajustar_stock_semanal
+ON SCHEDULE EVERY 1 WEEK
+STARTS '2024-10-25 00:00:00'
+DO
+BEGIN
+    UPDATE inventario_productos ip
+    JOIN (SELECT idProducto, SUM(Cantidad) AS vendidos
+          FROM producto_venta pv
+          JOIN ventas v ON pv.idVenta = v.idVenta
+          WHERE v.Fecha BETWEEN CURDATE() - INTERVAL 7 DAY AND CURDATE()
+          GROUP BY idProducto) AS ventas_semanales
+    ON ip.idProducto = ventas_semanales.idProducto
+    SET ip.Cantidad = ip.Cantidad - ventas_semanales.vendidos;
+END //
+DELIMITER ;
+
+--  Verificar el Cumplimiento del Plan de Rotación Agrícola
+DELIMITER //
+CREATE EVENT IF NOT EXISTS verificar_plan_rotacion
+ON SCHEDULE EVERY 1 WEEK
+STARTS '2024-10-22 00:00:00'
+DO
+BEGIN
+    INSERT INTO log_agricola (Fecha, Mensaje, idTerreno)
+    SELECT CURDATE(), CONCAT('Terreno ', idTerreno, ' no ha completado su rotación programada'), idTerreno
+    FROM terreno_agricola
+    WHERE Estado_Rotacion = 'Pendiente';
+END //
+DELIMITER ;
+

@@ -136,3 +136,147 @@ RETURN IFNULL(total_hectareas, 0);
 END //
 DELIMITER ;
 
+-- Función para calcular el total de maquinaria en mantenimiento actualmente
+DELIMITER //
+CREATE FUNCTION total_maquinaria_en_mantenimiento()
+RETURNS INT
+DETERMINISTIC
+BEGIN
+  DECLARE total_maquinaria INT;
+  SELECT COUNT(idMaquinaria) INTO total_maquinaria
+  FROM mantenimiento_maquinaria
+  WHERE Estado = 'En Mantenimiento';
+  RETURN IFNULL(total_maquinaria, 0);
+END //
+DELIMITER ;
+
+-- Función para obtener el total de herramientas en uso
+DELIMITER //
+CREATE FUNCTION total_herramientas_en_uso()
+RETURNS INT
+DETERMINISTIC
+BEGIN
+  DECLARE total_herramientas INT;
+  SELECT COUNT(idHerramienta) INTO total_herramientas
+  FROM tareas_herramientas
+  WHERE Estado = 'En Uso';
+  RETURN IFNULL(total_herramientas, 0);
+END //
+DELIMITER ;
+
+-- Función para calcular el costo promedio de los productos
+DELIMITER //
+CREATE FUNCTION costo_promedio_productos()
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+  DECLARE promedio_costo DECIMAL(10,2);
+  SELECT AVG(Precio) INTO promedio_costo
+  FROM productos;
+  RETURN IFNULL(promedio_costo, 0);
+END //
+DELIMITER ;
+
+-- Función para calcular la producción total de un tipo específico de producto:
+
+DELIMITER //
+CREATE FUNCTION produccion_total_por_tipo(tipo_producto VARCHAR(45))
+RETURNS INT
+DETERMINISTIC
+BEGIN
+  DECLARE total_produccion INT;
+  SELECT SUM(Cantidad) INTO total_produccion
+  FROM produccion
+  WHERE Tipo_Producto = tipo_producto;
+  RETURN IFNULL(total_produccion, 0);
+END //
+DELIMITER ;
+
+-- Función para obtener el total de empleados en un cargo específico
+
+DELIMITER //
+CREATE FUNCTION total_empleados_por_cargo(cargo_nombre VARCHAR(45))
+RETURNS INT
+DETERMINISTIC
+BEGIN
+  DECLARE total_empleados INT;
+  SELECT COUNT(idEmpleado) INTO total_empleados
+  FROM empleados
+  WHERE Cargo = cargo_nombre;
+  RETURN IFNULL(total_empleados, 0);
+END //
+DELIMITER ;
+
+-- Función para calcular el total de gastos en maquinaria por proveedor
+DELIMITER //
+CREATE FUNCTION total_gastos_por_proveedor(idProveedor INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+  DECLARE total_gastos DECIMAL(10,2);
+  SELECT SUM(Costo) INTO total_gastos
+  FROM ordenes_compra
+  WHERE idProveedor = idProveedor;
+  RETURN IFNULL(total_gastos, 0);
+END //
+DELIMITER ;
+
+-- Función para obtener la cantidad total de productos en inventario por tipo
+DELIMITER //
+CREATE FUNCTION total_inventario_por_tipo(tipo_producto VARCHAR(45))
+RETURNS INT
+DETERMINISTIC
+BEGIN
+  DECLARE total_inventario INT;
+  SELECT SUM(Cantidad) INTO total_inventario
+  FROM inventario_producto
+  WHERE Tipo_Producto = tipo_producto;
+  RETURN IFNULL(total_inventario, 0);
+END //
+DELIMITER ;
+
+-- Función para calcular el total de ventas realizadas por un cliente específico:
+
+DELIMITER //
+CREATE FUNCTION total_ventas_por_cliente(idCliente INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+  DECLARE total_ventas DECIMAL(10,2);
+  SELECT SUM(Total) INTO total_ventas
+  FROM ventas
+  WHERE idCliente = idCliente;
+  RETURN IFNULL(total_ventas, 0);
+END //
+DELIMITER ;
+
+-- Función para obtener el total de animales en una fecha específica:
+
+DELIMITER //
+CREATE FUNCTION total_animales_por_fecha(fecha DATE)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+  DECLARE total_animales INT;
+  SELECT SUM(Cantidad) INTO total_animales
+  FROM pecuario
+  WHERE Fecha_Ingreso = fecha;
+  RETURN IFNULL(total_animales, 0);
+END //
+DELIMITER ;
+
+-- Función para calcular el costo total de mantenimiento de una maquinaria específica:
+
+DELIMITER //
+CREATE FUNCTION costo_total_mantenimiento_maquinaria(idMaquinaria INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+  DECLARE total_mantenimiento DECIMAL(10,2);
+  SELECT SUM(Costo) INTO total_mantenimiento
+  FROM mantenimiento_maquinaria
+  WHERE idMaquinaria = idMaquinaria;
+  RETURN IFNULL(total_mantenimiento, 0);
+END //
+DELIMITER ;
+
