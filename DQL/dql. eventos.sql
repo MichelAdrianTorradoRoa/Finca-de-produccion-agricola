@@ -140,7 +140,7 @@ DELIMITER ;
 -- Generar un reporte mensual de ingresos por las ventas
 DELIMITER //
 CREATE EVENT IF NOT EXISTS generar_reporte_ingresos_mensual
-ON SCHEDULE LAST DAY OF MONTH
+ON SCHEDULE EVERY 1 MONTH
 DO
 BEGIN
 DECLARE total_ingresos DECIMAL(10, 2);
