@@ -112,7 +112,7 @@ DELIMITER ;
 -- Verificar inventario suficiente para una venta
 DELIMITER //
 CREATE TRIGGER verificar_inventario_antes_venta
-BEFORE INSERT ON ventas
+BEFORE INSERT ON productos_ventas
 FOR EACH ROW
 BEGIN
 DECLARE cantidad_disponible INT;
