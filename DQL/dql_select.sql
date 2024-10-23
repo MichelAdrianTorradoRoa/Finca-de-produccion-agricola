@@ -433,7 +433,7 @@ FROM terreno_pecuario
 WHERE Hectareas > 20;
 
 
--- 61. Obtener el proveedor que más productos ha vendido:
+-- 61. Obtener el proveedor que menos productos ha vendido:
 
 USE finca;
 SELECT Nombre
@@ -442,7 +442,7 @@ WHERE idProveedor = (
     SELECT idProveedor
     FROM ordenes_compra
     GROUP BY idProveedor
-    ORDER BY COUNT(*) DESC
+    ORDER BY COUNT(*) ASC
     LIMIT 1
 );
 
