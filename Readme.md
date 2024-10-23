@@ -12,6 +12,8 @@ Este proyecto consta de la gestion y manipulación de una base de datos de una f
 | 5 | [Procedimientos, Funciones, Eventos y Triggers](#procedimientos-funciones-eventos-y-triggers) |
 | 6 | [Roles de usuario](#roles-de-usuario) |
 | 7 | [Contribuciones](#contribuciones) |
+| 8 | [Licencia y contacto](#licencia-y-contacto) |
+| 9 | [Autores](#autores) |
 
 ## Requerimientos
 🐬
@@ -178,7 +180,7 @@ WHERE i.Cantidad < 100;
 ```
 
 ## Procedimientos, Funciones, Eventos y Triggers
-
+🛠️
 Se encontraran algunos como estos:
 
 ### Procedimientos
@@ -526,6 +528,7 @@ DELIMITER ;
 
 
 ## Roles de usuario
+🤖
 1. Rol de administrador
 ```sql
 CREATE ROLE 'Admin';
@@ -577,12 +580,14 @@ GRANT 'Mantenimiento' TO 'usuario5'@'localhost';
 ```
 
 ## Contribuciones
+🫱🏼‍🫲🏾
 
 - **Michel Adrian Torrado Roa:** Modelo UML, Inserciones (15) tablas, Consultas SQL (50), Procedimientos Almacenados (10), Funciones (10), Eventos (10), Triggers (10), Roles de usuarios (5).
 
 - **Juan David Conde Martínez** Archivo DDL, Inserciones (15) tablas, Consultas (50), Procedimientos Almacenados (10), Funciones (10), Eventos (10), Triggers (10), Readme.
 
 ## Licencia y contacto
+📱
 
 Este proyecto no está bajo una licencia, puedes usar, modificar y distribuir el código
 
@@ -595,5 +600,6 @@ Para preguntas o contribuciones, puedes contactarnos en:
 - **Correo Electrónico**: micheltorrado12@gmail.com
 
 # Autores
+🖌️
 
 Hecho por [@MichelAdrianTorradoRoa](https://github.com/MichelAdrianTorradoRoa) y [@JuanDavidCondeMartinez](https://github.com/juanconde025)
