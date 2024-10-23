@@ -1,9 +1,9 @@
 -- Registrar una venta y actualizar automaticamente el inventario
 DELIMITER //
-CREATE PROCEDURE RegistrarVenta(IN idProducto INT, IN cantidad INT, IN total DECIMAL(10, 2))
+CREATE PROCEDURE RegistrarVenta(IN idProducto INT, IN cantidad INT, IN idVenta INT)
 BEGIN
-    INSERT INTO ventas (idProducto, Cantidad, Total, Fecha) 
-    VALUES (idProducto, cantidad, total, CURDATE());
+    INSERT INTO productos_ventas (idProducto, idVenta) 
+    VALUES (idProducto, idVenta);
     UPDATE inventario_productos
     SET Cantidad = Cantidad - cantidad
     WHERE idProducto = idProducto AND Estado = 'Disponible';
@@ -12,32 +12,34 @@ DELIMITER ;
 
 -- Registrar un nuevo proveedor
 DELIMITER //
-CREATE PROCEDURE RegistrarProveedor(IN nombre VARCHAR(45), IN direccion VARCHAR(45), IN telefono VARCHAR(45))
+CREATE PROCEDURE RegistrarProveedor(IN nombre VARCHAR(45),IN telefono VARCHAR(45))
 BEGIN
-    INSERT INTO proveedores (Nombre, Direccion, Telefono)
-    VALUES (nombre, direccion, telefono);
+    INSERT INTO proveedores (Nombre, Fecha_uso_servcios, Telefono)
+    VALUES (nombre,NOW(), telefono);
 END //
 DELIMITER ;
 
 -- Registrar un nuevo empleado
 DELIMITER //
-CREATE PROCEDURE RegistrarEmpleado(IN nombre VARCHAR(45), IN apellido VARCHAR(45), IN salario DECIMAL(10, 2), IN fechanacimiento DATE, IN horainicio TIME, IN horafinalizacion TIME, IN telefono VARCHAR(45))
+CREATE PROCEDURE RegistrarEmpleado(IN nombre VARCHAR(45), IN apellido VARCHAR(45), IN salario DECIMAL(10, 2), IN fechanacimiento DATE, IN horainicio TIME, IN horafinalizacion TIME, IN telefono VARCHAR(45), IN idCargo INT)
 BEGIN
-    INSERT INTO empleados (Nombre, Apellido, Salario, Fecha_Contratacion, Fecha_Nacimiento, Hora_inicio, Hora_Finalizacion, Telefono, Estado)
-    VALUES (nombre, apellido, salario, CURDATE(), fechanacimiento, horainicio, horafinalizacion, telefono, 'Activo');
+    INSERT INTO empleados (Nombre, Apellido, Salario, Fecha_Contratacion, Fecha_Nacimiento, Hora_inicio, Hora_Finalizacion, Telefono, Estado, idCargo)
+    VALUES (nombre, apellido, salario, CURDATE(), fechanacimiento, horainicio, horafinalizacion, telefono, 'Activo', idCargo);
 END //
 DELIMITER ;
 
 -- Actualizar el estado de una maquinaria despues de un mantenimiento
 DELIMITER //
-CREATE PROCEDURE ActualizarEstadoMaquinaria(IN idmaquinaria INT, IN nuevoestado VARCHAR(50)
+CREATE PROCEDURE ActualizarEstadoMaquinaria(IN idmaquinaria INT, IN idtipo INT, IN nuevoestado VARCHAR(50)
 )
 BEGIN
-    UPDATE maquinaria
+    SET SQL_SAFE_UPDATES = 0;
+    UPDATE inventario_maquinaria
     SET Estado = nuevoEstado
     WHERE idMaquinaria = idmaquinaria;
-    INSERT INTO mantenimiento_maquinaria (idMaquinaria, Fecha)
-    VALUES (idMaquinaria, CURDATE());
+    INSERT INTO mantenimiento_maquinaria (idMaquinaria, Fecha, idTipo_Maquinaria)
+    VALUES (idMaquinaria, CURDATE(), idtipo);
+    SET SQL_SAFE_UPDATES = 1;
 END //
 DELIMITER ;
 
@@ -54,22 +56,24 @@ DELIMITER ;
 
 -- Actualizar el inventario al comprar un producto
 DELIMITER //
-CREATE PROCEDURE ActualizarInventarioCompra(IN idproducto INT, IN cantidad INT)
+CREATE PROCEDURE ActualizarInventarioCompra(IN idproducto INT, IN cantidad INT, IN total INT, IN idmaquinaria INT, IN idproveedor INT, IN idherramienta INT)
 BEGIN
+	SET SQL_SAFE_UPDATES = 0;
     UPDATE inventario_productos
     SET Cantidad = Cantidad + cantidad
     WHERE idProducto = idproducto;
-    INSERT INTO ordenes_compra (idProducto, Cantidad, Fecha)
-    VALUES (idproducto, cantidad, CURDATE());
+    INSERT INTO ordenes_compra (idProducto, Estado, Fecha, Total, idMaquinaria, idProveedor, idHerramienta)
+    VALUES (idproducto, 'Pendiente', CURDATE() , total, idmaquinaria, idproveedor, idherramienta);
+    SET SQL_SAFE_UPDATES = 1;
 END //
 DELIMITER ;
 
 -- Registrar tareas a las herramientas
-DELIMITER $$
-CREATE PROCEDURE RegistrarTareaConHerramientas(IN tarea VARCHAR(45), IN idherramienta INT)
+DELIMITER //
+CREATE PROCEDURE RegistrarTareaConHerramientas(IN tarea VARCHAR(45), IN idherramienta INT, IN fechai DATETIME, IN fechaf DATETIME, IN prioridad VARCHAR(45), IN tipo VARCHAR(45), IN cargo INT)
 BEGIN
-    INSERT INTO tareas (Nombre, Fecha)
-    VALUES (tarea, CURDATE());
+    INSERT INTO tareas (Nombre, Fecha_Inicio, Fecha_Final, Prioridad, Tipo, idCargo)
+    VALUES (tarea, fechai, fechaf, prioridad,tipo,cargo);
     SET @idTarea = LAST_INSERT_ID();
     INSERT INTO tareas_herramientas (idTarea, idHerramienta)
     VALUES (@idTarea, idherramienta);
@@ -80,7 +84,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE ObtenerMantenimientoMaquinaria(IN idmaquinaria INT)
 BEGIN
-    SELECT Fecha, Estado
+    SELECT *
     FROM mantenimiento_maquinaria
     WHERE idMaquinaria = idmaquinaria;
 END //
@@ -90,9 +94,11 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE ActualizarEstadoProducto(IN idproducto INT, IN estado VARCHAR(45))
 BEGIN
+    SET SQL_SAFE_UPDATES = 0;
     UPDATE inventario_productos
     SET Estado = estado
     WHERE idProducto = idproducto;
+    SET SQL_SAFE_UPDATES = 1;
 END //
 DELIMITER ;
 
