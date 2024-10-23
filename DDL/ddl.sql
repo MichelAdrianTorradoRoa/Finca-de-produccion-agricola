@@ -176,8 +176,13 @@ CREATE TABLE IF NOT EXISTS `finca`.`tareas` (
   `Fecha_Final` DATETIME NOT NULL,
   `Prioridad` VARCHAR(45) NOT NULL,
   `Tipo` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idTarea`),
-  UNIQUE INDEX `idTarea_UNIQUE` (`idTarea` ASC) VISIBLE)
+  `idCargo` INT NOT NULL,
+  PRIMARY KEY (`idTarea`, `idCargo`),
+  UNIQUE INDEX `idTarea_UNIQUE` (`idTarea` ASC) VISIBLE,
+  INDEX `fk_Tareas_Cargo1_idx` (`idCargo` ASC) VISIBLE,
+  CONSTRAINT `fk_Tareas_Cargo1`
+    FOREIGN KEY (`idCargo`)
+    REFERENCES `finca`.`cargo` (`idCargo`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
