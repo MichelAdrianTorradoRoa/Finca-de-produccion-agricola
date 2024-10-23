@@ -112,7 +112,7 @@ DELIMITER ;
 -- Verificar inventario suficiente para una venta
 DELIMITER //
 CREATE TRIGGER verificar_inventario_antes_venta
-BEFORE INSERT ON productos_ventas
+BEFORE INSERT ON ventas
 FOR EACH ROW
 BEGIN
 DECLARE cantidad_disponible INT;
@@ -124,6 +124,7 @@ IF cantidad_disponible < 1 THEN
 SIGNAL SQLSTATE '45000'
 SET MESSAGE_TEXT = 'inventario insuficiente para realizar la venta';
 END IF;
+    
 END //
 DELIMITER ;
 
