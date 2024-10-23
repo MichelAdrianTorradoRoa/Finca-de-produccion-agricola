@@ -558,7 +558,7 @@ GRANT SELECT, INSERT, UPDATE ON inventario_productos TO 'Empleado';
 CREATE ROLE 'Vendedor';
 GRANT SELECT, INSERT, UPDATE ON clientes TO 'Vendedor';
 GRANT SELECT, INSERT, UPDATE, DELETE ON ventas TO 'Vendedor';
-GRANT SELECT ON productos_ventas TO 'Vendedor';
+GRANT SELECT, INSERT, UPDATE ON productos_ventas TO 'Vendedor';
 ```
 
 5. Rol de mantenimiento
@@ -566,8 +566,8 @@ GRANT SELECT ON productos_ventas TO 'Vendedor';
 CREATE ROLE 'Mantenimiento';
 GRANT SELECT, INSERT, UPDATE ON mantenimiento_herramientas TO 'Mantenimiento';
 GRANT SELECT, INSERT, UPDATE ON mantenimiento_maquinaria TO 'Mantenimiento';
-GRANT SELECT ON herramientas TO 'Mantenimiento';
-GRANT SELECT ON inventario_maquinaria TO 'Mantenimiento';
+GRANT SELECT, INSERT, UPDATE ON herramientas TO 'Mantenimiento';
+GRANT SELECT, INSERT, UPDATE ON inventario_maquinaria TO 'Mantenimiento';
 ```
 
 - Asignacion de roles
