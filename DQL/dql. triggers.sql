@@ -173,12 +173,12 @@ DELIMITER ;
 
 -- Registrar auditoría de la eliminación de un empleado
 DELIMITER //
-CREATE TRIGGER auditoria_eliminacion_empleado
+CREATE TRIGGER verificar_eliminacion_empleado
 BEFORE DELETE ON empleados
 FOR EACH ROW
 BEGIN
-  INSERT INTO auditoria_empleados (idEmpleado, Nombre, Fecha_Eliminacion)
-  VALUES (OLD.idEmpleado, OLD.Nombre, NOW());
+  INSERT INTO log_empleados (idEmpleado, Mensaje, Fecha)
+  VALUES (OLD.idEmpleado,CONCAT('Se ha eliminado el empleado con el id: ', OLD.idEmpleado), NOW());
 END //
 DELIMITER ;
 
@@ -197,14 +197,13 @@ BEGIN
 END //
 DELIMITER ;
 
---  Actualizar inventario de animales tras una recolección
-DELIMITER //
-CREATE TRIGGER actualizar_inventario_recoleccion
-AFTER INSERT ON produccion_pecuaria
+--  Actualizar inventario de productos
+CREATE TRIGGER actualizar_inventario
+AFTER INSERT ON productos
 FOR EACH ROW
 BEGIN
   UPDATE inventario_productos
-  SET Cantidad = Cantidad + NEW.Cantidad_Producida
+  SET Cantidad = Cantidad + NEW.Cantidad_Disponible
   WHERE idProducto = NEW.idProducto;
 END //
 DELIMITER ;
@@ -222,39 +221,39 @@ BEGIN
 END //
 DELIMITER ;
 
--- Registrar auditoría de la modificación de una orden de compra
+-- Registrar modificacion de la tabla ordenes de compra
 DELIMITER //
-CREATE TRIGGER auditoria_modificacion_orden_compra
+CREATE TRIGGER modificacion_orden_compra
 AFTER UPDATE ON ordenes_compra
 FOR EACH ROW
 BEGIN
-  INSERT INTO auditoria_ordenes_compra (idOrdenCompra, Cambios, Fecha)
-  VALUES (NEW.idOrdenCompra, CONCAT('Estado anterior: ', OLD.Estado, ', Estado nuevo: ', NEW.Estado), NOW());
+  INSERT INTO log_proveedores (idProveedor, Mensaje, Fecha)
+  VALUES (NEW.idProveedor, 'Se modifico la compra al proveedor', NOW());
 END //
 DELIMITER ;
 
--- Evitar eliminar maquinaria en mantenimiento
+-- Evitar eliminar maquinaria en operativo
 DELIMITER //
 CREATE TRIGGER evitar_eliminar_maquinaria_mantenimiento
-BEFORE DELETE ON maquinarias
+BEFORE DELETE ON inventario_maquinaria
 FOR EACH ROW
 BEGIN
-  IF OLD.Estado = 'Mantenimiento' THEN
+  IF OLD.Estado = 'Operativo' THEN
     SIGNAL SQLSTATE '45000'
     SET MESSAGE_TEXT = 'No se puede eliminar una maquinaria en mantenimiento';
   END IF;
 END //
 DELIMITER ;
 
---  Actualizar estado de una tarea al completar una inspección
+--  Actualizar el tipo de una tarea 
 DELIMITER //
-CREATE TRIGGER actualizar_estado_tarea_inspeccion
-AFTER UPDATE ON inspecciones_tareas
+CREATE TRIGGER actualizar_tipo_tarea
+AFTER UPDATE ON tareas
 FOR EACH ROW
 BEGIN
-  IF NEW.Estado_Inspeccion = 'Aprobada' THEN
+  IF NEW.Tipo = 'Media' THEN
     UPDATE tareas
-    SET Estado = 'Revisada'
+    SET Tipo = 'Alta'
     WHERE idTarea = NEW.idTarea;
   END IF;
 END //
@@ -278,13 +277,13 @@ BEGIN
 END //
 DELIMITER ;
 
- -- Registrar eliminación de una orden de compra
+ -- Registrar eliminación de una orden de compra en la tabla log proveedores 
  DELIMITER //
 CREATE TRIGGER registrar_eliminacion_orden_compra
 BEFORE DELETE ON ordenes_compra
 FOR EACH ROW
 BEGIN
-  INSERT INTO log_ordenes_compra (Mensaje, Fecha, idOrdenCompra)
-  VALUES (CONCAT('Orden de compra eliminada: ', OLD.idOrdenCompra), CURDATE(), OLD.idOrdenCompra);
+  INSERT INTO log_proveedores (Mensaje, Fecha, idProveedor)
+  VALUES (CONCAT('Orden de compra eliminada del proveedor con el id: ', OLD.idProveedor), CURDATE(), OLD.idProveedor);
 END //
 DELIMITER ;
