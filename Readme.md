@@ -188,33 +188,35 @@ Se encontraran algunos como estos:
 1. Actualizar el inventario al comprar un producto
 ```sql
 DELIMITER //
-CREATE PROCEDURE ActualizarInventarioCompra(IN idproducto INT, IN cantidad INT)
+CREATE PROCEDURE ActualizarInventarioCompra(IN idproducto INT, IN cantidad INT, IN total INT, IN idmaquinaria INT, IN idproveedor INT, IN idherramienta INT)
 BEGIN
+	SET SQL_SAFE_UPDATES = 0;
     UPDATE inventario_productos
     SET Cantidad = Cantidad + cantidad
     WHERE idProducto = idproducto;
-    INSERT INTO ordenes_compra (idProducto, Cantidad, Fecha)
-    VALUES (idproducto, cantidad, CURDATE());
+    INSERT INTO ordenes_compra (idProducto, Estado, Fecha, Total, idMaquinaria, idProveedor, idHerramienta)
+    VALUES (idproducto, 'Pendiente', CURDATE() , total, idmaquinaria, idproveedor, idherramienta);
+    SET SQL_SAFE_UPDATES = 1;
 END //
 DELIMITER ;
 
-CALL ActualizarInventarioCompra(1, 50);
+CALL ActualizarInventarioCompra(1, 50, 2342, 1, 1, 1);
 ```
 
 2. Registrar tareas a las herramientas
 ```sql
-DELIMITER $$
-CREATE PROCEDURE RegistrarTareaConHerramientas(IN tarea VARCHAR(45), IN idherramienta INT)
+DELIMITER //
+CREATE PROCEDURE RegistrarTareaConHerramientas(IN tarea VARCHAR(45), IN idherramienta INT, IN fechai DATETIME, IN fechaf DATETIME, IN prioridad VARCHAR(45), IN tipo VARCHAR(45), IN cargo INT)
 BEGIN
-    INSERT INTO tareas (Nombre, Fecha)
-    VALUES (tarea, CURDATE());
+    INSERT INTO tareas (Nombre, Fecha_Inicio, Fecha_Final, Prioridad, Tipo, idCargo)
+    VALUES (tarea, fechai, fechaf, prioridad,tipo,cargo);
     SET @idTarea = LAST_INSERT_ID();
     INSERT INTO tareas_herramientas (idTarea, idHerramienta)
     VALUES (@idTarea, idherramienta);
 END //
 DELIMITER ;
 
-CALL RegistrarTareaConHerramientas('Preparar terreno', 2);
+CALL RegistrarTareaConHerramientas('Preparar terreno', 2, '2024-10-24', '2024-10-30', 'Alta', 'Agricola', 1);
 ```
 
 3. Obtener el mantenimiento que requiere una maquinaria
@@ -222,7 +224,7 @@ CALL RegistrarTareaConHerramientas('Preparar terreno', 2);
 DELIMITER //
 CREATE PROCEDURE ObtenerMantenimientoMaquinaria(IN idmaquinaria INT)
 BEGIN
-    SELECT Fecha, Estado
+    SELECT *
     FROM mantenimiento_maquinaria
     WHERE idMaquinaria = idmaquinaria;
 END //
@@ -236,9 +238,11 @@ CALL ObtenerMantenimientoMaquinaria(3);
 DELIMITER //
 CREATE PROCEDURE ActualizarEstadoProducto(IN idproducto INT, IN estado VARCHAR(45))
 BEGIN
+    SET SQL_SAFE_UPDATES = 0;
     UPDATE inventario_productos
     SET Estado = estado
     WHERE idProducto = idproducto;
+    SET SQL_SAFE_UPDATES = 1;
 END //
 DELIMITER ;
 
